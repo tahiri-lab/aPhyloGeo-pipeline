@@ -1,2 +1,7 @@
-Describe how to configure the workflow (using config.yaml and maybe additional files).
-All of them need to be present with example entries inside of the config folder.
+
+## General settings
+
+To configure this workflow, modify config/config.yaml according to your needs, following the explanations provided in the file.
+
+
+
