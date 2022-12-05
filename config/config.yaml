@@ -1,0 +1,9 @@
+Thresholds:
+  bootstrap_threshold: 0
+  rf_threshold: 100
+params:
+  geo_file: datasets/geo.csv
+  seq_file: datasets/seq.fasta
+  specimen_id: id
+  step_size: 200
+  window_size: 5
