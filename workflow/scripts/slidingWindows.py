@@ -6,9 +6,9 @@ import numpy as np
 
 def slidingWindow(alignment_output, win=0, step=0):
     #check whether the path exist or not
-    isExist = os.path.isdir("output/windows")
+    isExist = os.path.isdir("results/windows")
     if not isExist:
-        os.mkdir("output/windows")
+        os.mkdir("results/windows")
     # Check if mutation happens
     windows_mutation = []
 
@@ -33,7 +33,7 @@ def slidingWindow(alignment_output, win=0, step=0):
         for start, end in windows_mutation:
             #print(start,end)
             records = seq_record[start:end]
-            with open("output/windows/window_position_" + str(start) + "_" + str(end) + ".fa", "a") as handle:
+            with open("results/windows/window_position_" + str(start) + "_" + str(end) + ".fa", "a") as handle:
                 SeqIO.write(records, handle, "fasta") 
     #print(windows_mutation)              
     
