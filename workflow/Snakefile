@@ -12,3 +12,5 @@ include: 'rules/slidingwindow0.smk'
 
 rule all:
     input: "results/slidingWindows.done"
+
+

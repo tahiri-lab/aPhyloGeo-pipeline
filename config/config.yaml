@@ -6,4 +6,4 @@ params:
   seq_file: data/align.fa
   specimen_id: id
   step_size: 200
-  window_size: 5
+  window_size: 100

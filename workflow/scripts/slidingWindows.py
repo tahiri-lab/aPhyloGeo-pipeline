@@ -6,9 +6,14 @@ import numpy as np
 
 def slidingWindow(alignment_output, win=0, step=0):
     #check whether the path exist or not
-    isExist = os.path.isdir("results/windows")
+    window_dir = "results/windows/"
+    isExist = os.path.isdir(window_dir)
     if not isExist:
-        os.mkdir("results/windows")
+        os.mkdir(window_dir)
+    else:
+        filelist = [f for f in os.listdir(window_dir) if f.endswith(".fa") ]
+        for f in filelist:
+            os.remove(os.path.join(window_dir, f))
     # Check if mutation happens
     windows_mutation = []
 
