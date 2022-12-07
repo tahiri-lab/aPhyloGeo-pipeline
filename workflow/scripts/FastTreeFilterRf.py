@@ -21,10 +21,10 @@ def rfFilter(file_seqTree,file_refTree,file_bootstrap_value,ete3_output, rf_thre
         with open(ete3_output, 'r') as file:
             normalized_rf = file.read().rstrip()
         
-        if float(normalized_rf)*100 <= rf_threshold:
-            with open("output/windows/rf_filtered.txt", "a") as f:
-                window_pos = file_seqTree[32:-9]
-                ref_feature = file_refTree[15:-7]
+        if float(normalized_rf)*100 <= float(rf_threshold):
+            with open("results/windows/rf_filtered.txt", "a") as f:
+                window_pos = file_seqTree[33:-9]
+                ref_feature = file_refTree[16:-7]
                 normalized_RF = round(float(normalized_rf)*100,2)
                 with open(file_bootstrap_value, 'r') as file:
                     bootstrap_average = round(float(file.read().rstrip()),2)

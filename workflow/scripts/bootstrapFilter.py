@@ -19,7 +19,7 @@ def bootstrapFilter(file_window,file_consensus,bootstrap_threshold=0):
     bootstrap = statistics.mean(confidence)
 
     #filter
-    if bootstrap >= bootstrap_threshold:
+    if bootstrap >= float(bootstrap_threshold):
         Phylo.write(consensus_tree, file_consensus, "newick")
     else:
         open(file_consensus, 'w').close()

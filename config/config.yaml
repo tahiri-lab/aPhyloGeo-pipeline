@@ -1,6 +1,6 @@
 Thresholds:
   bootstrap_threshold: 0
-  rf_threshold: 100
+  rf_threshold: 99
 params:
   geo_file: data/geo.csv
   seq_file: data/align.fa
