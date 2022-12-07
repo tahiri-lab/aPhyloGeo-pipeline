@@ -7,7 +7,7 @@ with open("results/windows/rf_filtered.txt") as f:
 	data = f.read()
 window_filt_phyML = list(filter(None,set(data.split("\n"))))
 
-ref_feature, = glob_wildcards("reference_tree/{ref}_newick")
+ref_feature, = glob_wildcards("results/reference_tree/{ref}_newick")
 
 
 rule all:
