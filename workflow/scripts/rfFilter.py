@@ -15,7 +15,7 @@ def rfFilter(file_seqTree,file_refTree,ete3_output, rf_threshold =100):
         os.system("rf " + file_seqTree + " " + file_refTree + " > " + ete3_output)
         with open(ete3_output, 'r') as file:
             normalized_rf = file.read().rstrip()
-            print("normalized_rf: ",normalized_rf)
+            #print("normalized_rf: ",normalized_rf)
         
         if float(normalized_rf)*100 <= float(rf_threshold):
             with open("results/windows/rf_filtered.txt", "a") as f:

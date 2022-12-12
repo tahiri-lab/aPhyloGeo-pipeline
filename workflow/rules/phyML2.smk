@@ -9,7 +9,6 @@ rule rf_distance:
 
 rule bootstrap_consensus:
     input: "results/windows/window_position_{position}.fa",
-            "results/slidingWindows.done"
     output: temp("results/bootstrap_consensus/window_position_{position}"),
     script:
         "../scripts/bootstrapFilter.py"
