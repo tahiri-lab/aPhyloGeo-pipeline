@@ -85,7 +85,6 @@ def filter_RF(wildcards):
     rf_outfile = checkpoints.rf_distance.get(position=wildcards.position, feature=wildcards.feature).output.ete3_output
     if os.stat(rf_outfile).st_size == 0: 
         #print("position_N",[wildcards][0][0])
-        add_yaml("config/filter_list.yaml",[wildcards][0][0])
         return "results/lowerBS/{position}.{feature}.rf_ete"
     else:
         with open(rf_outfile, 'r') as file:
@@ -96,7 +95,6 @@ def filter_RF(wildcards):
             return "results/lowerRF/{position}.{feature}.rf_ete"
         else:
             #print("position_N",[wildcards][0][0])
-            add_yaml("config/filter_list.yaml",[wildcards][0][0])
             return "results/higherRF/{position}.{feature}.rf_ete"
 
 #rule calculRF:
