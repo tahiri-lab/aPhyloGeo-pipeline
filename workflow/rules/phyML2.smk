@@ -1,3 +1,4 @@
+
 """
 configfile: "config/config.yaml"
 
@@ -70,27 +71,45 @@ POS, = glob_wildcards("results/windows/window_position_{position}.fa")
 #------------------------------------
 """
 #-------------------------------------------------------
+def add_yaml(yaml_file,params):
+	windows_yaml = yaml_file
+
+	with open(windows_yaml) as yamlfile:
+		cur_yaml = yaml.safe_load(yamlfile)
+		cur_yaml['windows_filtered'].append(params)
+		#print(cur_yaml)
+	with open(windows_yaml, 'w') as yamlfile:
+		yaml.safe_dump(cur_yaml, yamlfile, explicit_start=True, allow_unicode=True, encoding='utf-8')
+#-----------------------------------------------------
 def filter_RF(wildcards):
+    position_Y = ''
     rf_outfile = checkpoints.rf_distance.get(position=wildcards.position, feature=wildcards.feature).output.ete3_output
-    if os.stat(rf_outfile).st_size == 0:
-        return "results/lowerBS/{position}.{feature}.rf_ete"
+    if os.stat(rf_outfile).st_size == 0: 
+        print("position_N",[wildcards][0][0])
+        add_yaml("config/filter_list.yaml",[wildcards][0][0])
     else:
         with open(rf_outfile, 'r') as file:
             normalized_rf = file.read().rstrip()
         if float(normalized_rf)*100 <= float(config['Thresholds']['rf_threshold']):
-            return "results/lowerRF/{position}.{feature}.rf_ete", "results/windows_filtered_1/window_position_{position}.fa"
+            print("position_Y",[wildcards][0][0])
+            add_yaml("config/filter_list.yaml",[wildcards][0][0])
         else:
-            return "results/higherRF/{position}.{feature}.rf_ete"
+            print("position_N",[wildcards][0][0])
+            add_yaml("config/filter_list.yaml",[wildcards][0][0])
+        return position_Y
+    
 
 #rule calculRF:
 #    input: expand("results/rf/{position}.{feature}.rf_ete", position = POS, feature=feature_names),
 
 rule filterRF:
     input: filter_RF
-    output: temp("results/filter1/{position}.{feature}")
+    output: "results/filter1/{position}.{feature}"
     shell: "touch {output}"
-  
+           
 
+  
+"""
 rule windowFiltered:
     input: "results/windows/window_position_{position}.fa"
     output: "results/windows_filtered_1/window_position_{position}.fa"
@@ -110,7 +129,7 @@ rule lowerBS:
     input: "results/rf/{position}.{feature}.rf_ete"
     output: "results/lowerBS/{position}.{feature}.rf_ete"
     shell: "mv {input} {output}"
-
+"""
 checkpoint rf_distance:
     input: seq_tree = "results/bootstrap_consensus/window_position_{position}",
            ref_tree = "results/reference_tree/{feature}_newick"

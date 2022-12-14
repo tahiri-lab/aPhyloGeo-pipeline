@@ -6,7 +6,7 @@ configfile: "config/config.yaml"
 
 import pandas as pd
 import subprocess
-import os
+import os, yaml
 from Bio import SeqIO
 import os
 import numpy as np
