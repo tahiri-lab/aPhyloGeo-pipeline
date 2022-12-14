@@ -50,6 +50,11 @@ def slidingWindow(alignment_output, win=0, step=0):
                 SeqIO.write(records, handle, "fasta") 
 
 #----------------------------------------------------
+if not os.path.exists("results/RAxML"):
+    os.makedirs("results/RAxML")
+
+#open("results/rf_filtered_1.txt", 'w').close()
+#-------------------------------
 # global variable to use
 file_name = config['params']['geo_file']
 specimen_id = config['params']['specimen_id']
@@ -70,12 +75,16 @@ include: 'rules/refTrees1b.smk'
 POS, = glob_wildcards("results/windows/window_position_{position}.fa")
 #print("POS: ",POS)
 
-# Step 2: Phylogenetic trees construction; Step3, Step4: Filtering
+# Step 2: Phylogenetic trees construction; Step3: Filtering -- Bootstrap of consensus; Step4: RF distance calculation; # Step 5: Filtering -- RF distance
 include: 'rules/phyML2.smk'
 
 
+#Step 6: Phylogenetic trees construction (option 1: with raxml-ng)
+#include: 'rules/raxML3.smk'
+
 #----------------------------------------------------
 rule all:
-    input: expand("results/rf/{position}.{feature}.rf_ete", position = POS, feature=feature_names)
+   input: expand("results/filter1/{position}.{feature}", position = POS, feature=feature_names),
+#------------------------------------------------------------
 
-
+  

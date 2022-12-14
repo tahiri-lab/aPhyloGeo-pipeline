@@ -5,3 +5,4 @@ data/**
 .snakemake
 .snakemake/**
 test*
+*copy*

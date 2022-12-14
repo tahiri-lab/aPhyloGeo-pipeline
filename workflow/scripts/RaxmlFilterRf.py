@@ -5,15 +5,15 @@ from csv import writer
 import time
 
 
-def addToCsv(window_pos, ref_feature, bootstrap_average, normalized_RF):
+def addToCsv(window_pos, ref_feature, bootstrap_average, normalized_RF,output_csv):
     list = [window_pos, ref_feature, bootstrap_average, normalized_RF]
     #with open('output/filteredWindows'+ time.strftime("%Y%m%d-%H%M") + '.csv', 'a') as f_object:
-    with open('output/filteredWindows_Raxml.csv', 'a') as f_object:
+    with open(output_csv, 'a') as f_object:
         writer_object = writer(f_object)
         writer_object.writerow(list)
         f_object.close()
 
-def rfFilter(file_seqTree,file_refTree,file_bootstrap_value,ete3_output, rf_threshold =100):
+def rfFilter(file_seqTree,file_refTree,file_bootstrap_value,ete3_output,rf_threshold =100):
     if os.stat(file_bootstrap_value).st_size == 0:   #if file_seqTree is empty, it means bootstrap < threshold
         open(ete3_output, 'w').close()    # create an empty file
     else:
@@ -29,7 +29,7 @@ def rfFilter(file_seqTree,file_refTree,file_bootstrap_value,ete3_output, rf_thre
                 normalized_RF = round(float(normalized_rf)*100,2)
                 with open(file_bootstrap_value, 'r') as file:
                     bootstrap_average = round(float(file.read().rstrip()),2)
-            addToCsv(window_pos, ref_feature, bootstrap_average, normalized_RF)
+            addToCsv(window_pos, ref_feature, bootstrap_average, normalized_RF,output_csv)
                 
 
 if __name__ == '__main__':
