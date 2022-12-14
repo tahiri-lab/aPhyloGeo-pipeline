@@ -6,3 +6,4 @@ data/**
 .snakemake/**
 test*
 *copy*
+config/filter_list.yaml
