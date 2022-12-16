@@ -71,9 +71,8 @@ POS, = glob_wildcards("results/windows/window_position_{position}.fa")
 #------------------------------------
 """
 #-------------------------------------------------------
-def add_yaml(yaml_file,params):
+def update_yaml(yaml_file,params):
 	windows_yaml = yaml_file
-
 	with open(windows_yaml) as yamlfile:
 		cur_yaml = yaml.safe_load(yamlfile)
 		cur_yaml['windows_filtered'].append(params)
@@ -91,7 +90,12 @@ def filter_RF(wildcards):
             normalized_rf = file.read().rstrip()
         if float(normalized_rf)*100 <= float(config['Thresholds']['rf_threshold']):
             #print("position_Y",[wildcards][0][0])
-            add_yaml("config/filter_list.yaml",[wildcards][0][0])
+            update_yaml("config/config.yaml",[wildcards][0][0])
+
+            window_file = "results/windows/window_position_" + [wildcards][0][0] + ".fa"
+            filtered_file = "results/windows_filter1/window_position_" + [wildcards][0][0] + ".fa"
+            if not os.path.exists(filtered_file):
+                shutil.copyfile(window_file,filtered_file) 
             return "results/lowerRF/{position}.{feature}.rf_ete"
         else:
             #print("position_N",[wildcards][0][0])
@@ -102,8 +106,8 @@ def filter_RF(wildcards):
 
 rule filterRF:
     input: filter_RF
-    output: "results/filter1/{position}.{feature}"
-    shell: "sleep 2; touch {output}"
+    output: temp("results/filter1/{position}.{feature}")
+    shell: "sleep 5; touch {output}"
            
 rule lowerRF:
     input: "results/rf/{position}.{feature}.rf_ete"

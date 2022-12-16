@@ -2,13 +2,14 @@ from snakemake.utils import min_version
 
 min_version("7.17.0")
 
-configfile: "config/config.yaml", "config/filter_list.yaml"
+configfile: "config/config.yaml"
 
 import pandas as pd
 import subprocess
 import os, yaml
 from Bio import SeqIO
 import os
+import shutil
 import numpy as np
 
 #---------------------------------------------
@@ -19,7 +20,7 @@ def slidingWindow(alignment_output, win=0, step=0):
     if not isExist:
         os.mkdir(window_dir)
     else:
-        filelist = [f for f in os.listdir(window_dir) if f.endswith(".fa") ]
+        filelist = [f for f in os.listdir(window_dir)]
         for f in filelist:
             os.remove(os.path.join(window_dir, f))
     # Check if mutation happens
@@ -48,12 +49,30 @@ def slidingWindow(alignment_output, win=0, step=0):
             records = seq_record[start:end]
             with open("results/windows/window_position_" + str(start) + "_" + str(end) + ".fa", "a") as handle:
                 SeqIO.write(records, handle, "fasta") 
+    
+    #copy_dir = "results/windows_filter1/" 
+    #if os.path.isdir(copy_dir):
+    #    shutil.rmtree(copy_dir)
+    #files = os.listdir(window_dir)
+    #shutil.copytree(window_dir, copy_dir)
+    
 
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
     os.makedirs("results/RAxML")
+if not os.path.exists("results/windows_filter1"):
+    os.makedirs("results/windows_filter1")
 
-#open("results/rf_filtered_1.txt", 'w').close()
+def init_yaml(yaml_file,list_params):
+	windows_yaml = yaml_file
+	with open(windows_yaml) as yamlfile:
+		cur_yaml = yaml.safe_load(yamlfile)
+		cur_yaml['windows_filtered'] = list_params
+		#print(cur_yaml)
+	with open(windows_yaml, 'w') as yamlfile:
+		yaml.safe_dump(cur_yaml, yamlfile, explicit_start=True, allow_unicode=True, encoding='utf-8')
+# initiate yaml file for filtered parameters 
+init_yaml("config/config.yaml",[])
 #-------------------------------
 # global variable to use
 file_name = config['params']['geo_file']
@@ -83,8 +102,10 @@ include: 'rules/phyML2.smk'
 #include: 'rules/raxML3.smk'
 
 #----------------------------------------------------
-rule all:
-   input: expand("results/filter1/{position}.{feature}", position = POS, feature=feature_names),
+
+rule all: 
+   input: expand("results/filter1/{position}.{feature}", position = POS, feature=feature_names)
+   
 #------------------------------------------------------------
 
   
