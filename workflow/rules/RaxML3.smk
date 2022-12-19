@@ -1,5 +1,6 @@
 
 
+
          
 rule rf_distance2:
     input: seq_tree = "results/RAxML/{windows_pos}.raxml.bestTree",
