@@ -14,15 +14,6 @@ import numpy as np
 
 #---------------------------------------------
 def slidingWindow(alignment_output, win=0, step=0):
-    #check whether the path exist or not
-    window_dir = "./results/windows/"
-    isExist = os.path.isdir(window_dir)
-    if not isExist:
-        os.mkdir(window_dir)
-    else:
-        shutil.rmtree(window_dir)
-        os.mkdir(window_dir)
-    
     # Check if mutation happens
     windows_mutation = []
 
@@ -37,22 +28,10 @@ def slidingWindow(alignment_output, win=0, step=0):
         distinctDF = window.drop_duplicates()
         #mutation happens
         if distinctDF.shape[0] > 1: 
-            #print(distinctDF.shape[0])
-            #print("mutation window detected: {}_{}".format(i,j))
-            windows_mutation.append((i,j))
-            #print(i,j)
+            windows_mutation.append(str(i)+'_'+str(j))
         if j==seqlen: break
-    # write the sequence of sliding window which have mutation detected in fasta file
-    for seq_record in SeqIO.parse(alignment_output, "fasta"):
-        for start, end in windows_mutation:
-            #print(start,end)
-            records = seq_record[start:end]
-            with open("results/windows/window_position_" + str(start) + "_" + str(end) + ".fa", "a") as handle:
-                SeqIO.write(records, handle, "fasta") 
+    return windows_mutation
     
-   
-    
-
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
     os.makedirs("results/RAxML")
@@ -67,15 +46,15 @@ alignment_output = config['params']['seq_file']
 window_size = config['params']['window_size']
 step_size = config['params']['step_size']
 
+POS = slidingWindow(alignment_output, window_size, step_size)
+
 #---------------------------------------------
 # step 1a: Sliding windows
-slidingWindow(alignment_output, window_size, step_size)
+include: 'rules/slidingWindows1a.smk'
 
 # step 1b: Reference trees construction
 include: 'rules/refTrees1b.smk'
 
-POS, = glob_wildcards("results/windows/window_position_{position}.fa")
-#print("POS: ",POS)
 
 # Step 2: Phylogenetic trees construction; Step3: Filtering -- Bootstrap of consensus; Step4: RF distance calculation; # Step 5: Filtering -- RF distance
 include: 'rules/phyML2.smk'
@@ -86,8 +65,10 @@ include: 'rules/phyML2.smk'
 
 #----------------------------------------------------
 def get_windowedFilted(wildcards):
+    rf_threshold = config['Thresholds']['rf_threshold']
     with checkpoints.rf_phyML.get().output[0].open() as f:
-        windows = pd.read_csv(f)["window_pos"].to_list()
+        qc = pd.read_csv(f)
+        windows = qc[qc["normalized_RF"]<= rf_threshold]["window_pos"].to_list()
         windows_filtered = list(filter(None,set(windows)))
         return expand("results/RaxBootstrap/{windows_pos}.raxmlBootstrap", windows_pos=windows_filtered)
 
@@ -96,18 +77,18 @@ def get_windowedFilted(wildcards):
 rule all:
     input: get_windowedFilted
 
-
 checkpoint rf_phyML: 
    input: expand("results/rf/{position}.{feature}.rf_ete", position = POS, feature=feature_names)
    output: "results/rf_phyML.csv"
    script: "scripts/rfAfterPhyML.py"
 
-
-rule cp_windows:
-    input:  "results/windows/window_position_{windows_pos}.fa"
-    output: "results/windows_filtered/window_position_{windows_pos}.fa"
-    shell: "cp {input} {output}"
-
+rule qc_windows:
+    output: 
+        windows_filtered = "results/windows_filtered/window_position_{windows_pos}.fa"
+    params: 
+        alignment_output = config['params']['seq_file']
+    script: "scripts/getAlimentWindowsFiltered.py"   
+#----------------------RaxML-NG-------------------------------------
 rule runRaxML:
     input:  "results/windows_filtered/window_position_{windows_pos}.fa"
     output: 
@@ -127,7 +108,4 @@ rule bootstrapFilter2:
     output: "results/RaxBootstrap/{windows_pos}.raxmlBootstrap"
     script:
         "scripts/RaxFilterBootstrap.py"
-   
-#------------------------------------------------------------
-
   
