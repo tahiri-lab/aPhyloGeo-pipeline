@@ -7,3 +7,4 @@ data/**
 test*
 *copy*
 config/filter_list.yaml
+test_*/**

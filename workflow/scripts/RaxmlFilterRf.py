@@ -1,8 +1,5 @@
-import pandas as pd
-import subprocess
 import os
 from csv import writer
-import time
 
 
 def addToCsv(window_pos, ref_feature, bootstrap_average, normalized_RF,output_csv):

@@ -15,14 +15,14 @@ import numpy as np
 #---------------------------------------------
 def slidingWindow(alignment_output, win=0, step=0):
     #check whether the path exist or not
-    window_dir = "results/windows/"
+    window_dir = "./results/windows/"
     isExist = os.path.isdir(window_dir)
     if not isExist:
         os.mkdir(window_dir)
     else:
-        filelist = [f for f in os.listdir(window_dir)]
-        for f in filelist:
-            os.remove(os.path.join(window_dir, f))
+        shutil.rmtree(window_dir)
+        os.mkdir(window_dir)
+    
     # Check if mutation happens
     windows_mutation = []
 
@@ -50,29 +50,12 @@ def slidingWindow(alignment_output, win=0, step=0):
             with open("results/windows/window_position_" + str(start) + "_" + str(end) + ".fa", "a") as handle:
                 SeqIO.write(records, handle, "fasta") 
     
-    #copy_dir = "results/windows_filter1/" 
-    #if os.path.isdir(copy_dir):
-    #    shutil.rmtree(copy_dir)
-    #files = os.listdir(window_dir)
-    #shutil.copytree(window_dir, copy_dir)
+   
     
 
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
     os.makedirs("results/RAxML")
-if not os.path.exists("results/windows_filter1"):
-    os.makedirs("results/windows_filter1")
-
-def init_yaml(yaml_file,list_params):
-	windows_yaml = yaml_file
-	with open(windows_yaml) as yamlfile:
-		cur_yaml = yaml.safe_load(yamlfile)
-		cur_yaml['windows_filtered'] = list_params
-		#print(cur_yaml)
-	with open(windows_yaml, 'w') as yamlfile:
-		yaml.safe_dump(cur_yaml, yamlfile, explicit_start=True, allow_unicode=True, encoding='utf-8')
-# initiate yaml file for filtered parameters 
-init_yaml("config/config.yaml",[])
 #-------------------------------
 # global variable to use
 file_name = config['params']['geo_file']
@@ -102,9 +85,48 @@ include: 'rules/phyML2.smk'
 #include: 'rules/raxML3.smk'
 
 #----------------------------------------------------
+def get_windowedFilted(wildcards):
+    with checkpoints.rf_phyML.get().output[0].open() as f:
+        windows = pd.read_csv(f)["window_pos"].to_list()
+        windows_filtered = list(filter(None,set(windows)))
+        return expand("results/RaxBootstrap/{windows_pos}.raxmlBootstrap", windows_pos=windows_filtered)
 
-rule all: 
-   input: expand("results/filter1/{position}.{feature}", position = POS, feature=feature_names)
+
+
+rule all:
+    input: get_windowedFilted
+
+
+checkpoint rf_phyML: 
+   input: expand("results/rf/{position}.{feature}.rf_ete", position = POS, feature=feature_names)
+   output: "results/rf_phyML.csv"
+   script: "scripts/rfAfterPhyML.py"
+
+
+rule cp_windows:
+    input:  "results/windows/window_position_{windows_pos}.fa"
+    output: "results/windows_filtered/window_position_{windows_pos}.fa"
+    shell: "cp {input} {output}"
+
+rule runRaxML:
+    input:  "results/windows_filtered/window_position_{windows_pos}.fa"
+    output: 
+            temp("results/RAxML/{windows_pos}.raxml.bestModel"),
+            "results/RAxML/{windows_pos}.raxml.bestTree",
+            "results/RAxML/{windows_pos}.raxml.bootstraps",
+            temp("results/RAxML/{windows_pos}.raxml.log"),
+            temp("results/RAxML/{windows_pos}.raxml.mlTrees"),
+            temp("results/RAxML/{windows_pos}.raxml.rba"),
+            temp("results/RAxML/{windows_pos}.raxml.startTree"),
+            temp("results/RAxML/{windows_pos}.raxml.support"),
+    run:
+        os.system("raxml-ng --all --model GTR+G --msa " + input[0] + " --prefix results/RaxMl/" + wildcards.windows_pos + " --msa-format FASTA --data-type DNA --tree pars{5} --seed 239 --threads 2 --force --bs-trees 100 --bs-metric fbp")
+
+rule bootstrapFilter2:
+    input: "results/RAxML/{windows_pos}.raxml.bestTree"
+    output: "results/RaxBootstrap/{windows_pos}.raxmlBootstrap"
+    script:
+        "scripts/RaxFilterBootstrap.py"
    
 #------------------------------------------------------------
 

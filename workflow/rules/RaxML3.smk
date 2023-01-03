@@ -28,6 +28,6 @@ rule runRaxML:
             temp("results/RAxML/{windows_pos}.raxml.startTree"),
             temp("results/RAxML/{windows_pos}.raxml.support"),
     run:
-        os.system("raxml-ng --all --model GTR+G --msa " + input[0] + " --prefix results/RaxMl/" + wildcards.windowFilted + " --msa-format FASTA --data-type DNA --tree pars{5} --seed 239 --threads 2 --force --bs-trees 100 --bs-metric fbp")
+        os.system("raxml-ng --all --model GTR+G --msa " + input[0] + " --prefix results/RaxMl/" + wildcards.windows_pos + " --msa-format FASTA --data-type DNA --tree pars{5} --seed 239 --threads 2 --force --bs-trees 100 --bs-metric fbp")
        
    
