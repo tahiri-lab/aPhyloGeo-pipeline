@@ -6,11 +6,12 @@ configfile: "config/config.yaml"
 
 import pandas as pd
 import subprocess
-import os, yaml
+import yaml
 from Bio import SeqIO
 import os
 import shutil
 import numpy as np
+from csv import writer
 
 #---------------------------------------------
 def slidingWindow(alignment_output, win=0, step=0):
@@ -35,6 +36,13 @@ def slidingWindow(alignment_output, win=0, step=0):
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
     os.makedirs("results/RAxML")
+
+if not os.path.exists("results/output.csv"):
+    columns_name = ["window_pos", "ref_feature", "bootstrap_average", "normalized_RF"]
+    with open("results/output.csv", 'w') as f_object:
+        writer_object = writer(f_object)
+        writer_object.writerow(columns_name)
+        f_object.close()
 #-------------------------------
 # global variable to use
 file_name = config['params']['geo_file']
