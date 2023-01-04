@@ -70,12 +70,13 @@ def get_windowedFilted(wildcards):
         qc = pd.read_csv(f)
         windows = qc[qc["normalized_RF"]<= rf_threshold]["window_pos"].to_list()
         windows_filtered = list(filter(None,set(windows)))
-        return expand("results/RaxBootstrap/{windows_pos}.raxmlBootstrap", windows_pos=windows_filtered)
+    return expand("results/rf2/{windows_pos}.{feature}.rf_ete", windows_pos=windows_filtered,feature=feature_names)
 
 
 
 rule all:
     input: get_windowedFilted
+
 
 checkpoint rf_phyML: 
    input: expand("results/rf/{position}.{feature}.rf_ete", position = POS, feature=feature_names)
@@ -84,17 +85,17 @@ checkpoint rf_phyML:
 
 rule qc_windows:
     output: 
-        windows_filtered = "results/windows_filtered/window_position_{windows_pos}.fa"
+        windows_filtered = "results/windows_filtered/window_filtered_{windows_pos}.fa"
     params: 
         alignment_output = config['params']['seq_file']
     script: "scripts/getAlimentWindowsFiltered.py"   
 #----------------------RaxML-NG-------------------------------------
 rule runRaxML:
-    input:  "results/windows_filtered/window_position_{windows_pos}.fa"
+    input:  "results/windows_filtered/window_filtered_{windows_pos}.fa"
     output: 
             temp("results/RAxML/{windows_pos}.raxml.bestModel"),
             "results/RAxML/{windows_pos}.raxml.bestTree",
-            "results/RAxML/{windows_pos}.raxml.bootstraps",
+            temp("results/RAxML/{windows_pos}.raxml.bootstraps"),
             temp("results/RAxML/{windows_pos}.raxml.log"),
             temp("results/RAxML/{windows_pos}.raxml.mlTrees"),
             temp("results/RAxML/{windows_pos}.raxml.rba"),
@@ -108,4 +109,12 @@ rule bootstrapFilter2:
     output: "results/RaxBootstrap/{windows_pos}.raxmlBootstrap"
     script:
         "scripts/RaxFilterBootstrap.py"
+
+rule rf_distance2:
+    input: seq_tree = "results/RAxML/{windows_pos}.raxml.bestTree",
+           ref_tree = "results/reference_tree/{feature}_newick",
+           bootstrap_value = "results/RaxBootstrap/{windows_pos}.raxmlBootstrap"
+    output: ete3_output = "results/rf2/{windows_pos}.{feature}.rf_ete",
+    script:
+        "scripts/RaxmlFilterRf.py"
   
