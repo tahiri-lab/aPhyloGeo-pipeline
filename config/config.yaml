@@ -8,3 +8,4 @@ params:
   specimen_id: id
   step_size: 200
   window_size: 100
+  strategy: raxml

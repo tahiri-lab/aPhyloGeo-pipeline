@@ -18,7 +18,7 @@ def rfFilter(file_seqTree,file_refTree,file_bootstrap_value,ete3_output,window_p
             normalized_rf = file.read().rstrip()
         
         if float(normalized_rf)*100 <= float(rf_threshold):
-            output_csv = "results/output_raxml.csv"
+            output_csv = "results/output.csv"
             with open(output_csv, "a") as f:
                 normalized_RF = round(float(normalized_rf)*100,2)
                 with open(file_bootstrap_value, 'r') as file:

@@ -60,17 +60,19 @@ include: 'rules/refTrees1b.smk'
 include: 'rules/phyML2.smk'
 
 
-#Step 6: Phylogenetic trees construction (option 1: with raxml-ng)
-#include: 'rules/raxML3.smk'
 
 #----------------------------------------------------
 def get_windowedFilted(wildcards):
     rf_threshold = config['Thresholds']['rf_threshold']
+    strategy = config['params']['strategy']
     with checkpoints.rf_phyML.get().output[0].open() as f:
         qc = pd.read_csv(f)
         windows = qc[qc["normalized_RF"]<= rf_threshold]["window_pos"].to_list()
         windows_filtered = list(filter(None,set(windows)))
-    return expand("results/rf2/{windows_pos}.{feature}.rf_ete", windows_pos=windows_filtered,feature=feature_names)
+    if strategy.lower() != "fasttree":
+        return expand("results/rf2/{windows_pos}.{feature}.rf_ete", windows_pos=windows_filtered,feature=feature_names)
+    else: 
+        return expand("results/rf2_fastTree/{windows_pos}.{feature}.rf_ete", windows_pos=windows_filtered,feature=feature_names)
 
 
 
@@ -91,7 +93,7 @@ rule qc_windows:
     script: "scripts/getAlimentWindowsFiltered.py"   
 #----------------------RaxML-NG-------------------------------------
 rule runRaxML:
-    input:  "results/windows_filtered/window_filtered_{windows_pos}.fa"
+    input: "results/windows_filtered/window_filtered_{windows_pos}.fa"
     output: 
             temp("results/RAxML/{windows_pos}.raxml.bestModel"),
             "results/RAxML/{windows_pos}.raxml.bestTree",
@@ -106,15 +108,38 @@ rule runRaxML:
 
 rule bootstrapFilter2:
     input: "results/RAxML/{windows_pos}.raxml.bestTree"
-    output: "results/RaxBootstrap/{windows_pos}.raxmlBootstrap"
+    output: "results/RaxMLBootstrap/{windows_pos}.raxmlBootstrap"
     script:
-        "scripts/RaxFilterBootstrap.py"
+        "scripts/FilterBootstrap2.py"
 
 rule rf_distance2:
     input: seq_tree = "results/RAxML/{windows_pos}.raxml.bestTree",
            ref_tree = "results/reference_tree/{feature}_newick",
-           bootstrap_value = "results/RaxBootstrap/{windows_pos}.raxmlBootstrap"
+           bootstrap_value = "results/RaxMLBootstrap/{windows_pos}.raxmlBootstrap"
     output: ete3_output = "results/rf2/{windows_pos}.{feature}.rf_ete",
     script:
-        "scripts/RaxmlFilterRf.py"
+        "scripts/FilterRf2.py"
+
+#----------------------FastTree-------------------------------------
+rule runFasttree:
+    input: "results/windows_filtered/window_filtered_{windows_pos}.fa"
+    output: "results/fastTree/window_filtered.{windows_pos}.fastTree"
+    shell: 
+        "FastTree -gtr -nt {input} > {output}"
+
+rule bootstrapFilter_fasttree:
+    input: "results/fastTree/window_filtered.{windows_pos}.fastTree"
+    output: "results/fastTreeBootstrap/{windows_pos}.fastTreeBootstrap"
+    script:
+        "scripts/FilterBootstrap2.py"
+
+rule rf_distance_fasttree:
+    input: seq_tree = "results/fastTree/window_filtered.{windows_pos}.fastTree",
+           ref_tree = "results/reference_tree/{feature}_newick",
+           bootstrap_value = "results/fastTreeBootstrap/{windows_pos}.fastTreeBootstrap"
+    output: ete3_output = "results/rf2_fastTree/{windows_pos}.{feature}.rf_ete",
+    script:
+        "scripts/FilterRf2.py"
+
+
   
