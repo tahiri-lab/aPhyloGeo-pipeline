@@ -3,8 +3,9 @@ Thresholds:
   bootstrap_threshold: 0
   rf_threshold: 99
 params:
-  geo_file: data/geo.csv
-  seq_file: data/align.fa
+  data_type: aa
+  geo_file: data/geo_p.csv
+  seq_file: data/align_p.fa
   specimen_id: id
   step_size: 200
   window_size: 100

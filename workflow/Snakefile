@@ -111,8 +111,9 @@ rule runRaxML:
             temp("results/RAxML/{windows_pos}.raxml.rba"),
             temp("results/RAxML/{windows_pos}.raxml.startTree"),
             temp("results/RAxML/{windows_pos}.raxml.support"),
-    run:
-        os.system("raxml-ng --all --model GTR+G --msa " + input[0] + " --prefix results/RaxMl/" + wildcards.windows_pos + " --msa-format FASTA --data-type DNA --tree pars{5} --seed 239 --threads 2 --force --bs-trees 100 --bs-metric fbp")
+    params: data_type = config['params']['data_type']
+    script:
+        "scripts/runRaxMl.py"
 
 rule bootstrapFilter2:
     input: "results/RAxML/{windows_pos}.raxml.bestTree"
@@ -132,8 +133,10 @@ rule rf_distance2:
 rule runFasttree:
     input: "results/windows_filtered/window_filtered_{windows_pos}.fa"
     output: "results/fastTree/window_filtered.{windows_pos}.fastTree"
-    shell: 
-        "FastTree -gtr -nt {input} > {output}"
+    params: data_type = config['params']['data_type']
+    script:
+        "scripts/runFastTree.py"
+
 
 rule bootstrapFilter_fasttree:
     input: "results/fastTree/window_filtered.{windows_pos}.fastTree"

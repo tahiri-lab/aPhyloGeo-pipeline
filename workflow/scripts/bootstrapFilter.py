@@ -6,10 +6,13 @@ from Bio.Phylo.Consensus import *
 import re
 import statistics
 
-def bootstrapFilter(file_window,file_consensus,bootstrap_threshold=0):
+def bootstrapFilter(file_window,file_consensus,data_type,bootstrap_threshold=0):
     # get bootstrap consensus tree
     msa = AlignIO.read(file_window, 'fasta')
-    calculator = DistanceCalculator('identity')
+    if data_type.lower() != "aa":
+        calculator = DistanceCalculator('identity')
+    else:
+        calculator = DistanceCalculator('blosum62')
     constructor = DistanceTreeConstructor(calculator)
     consensus_tree = bootstrap_consensus(msa, 100, constructor, majority_consensus)
 
@@ -26,4 +29,4 @@ def bootstrapFilter(file_window,file_consensus,bootstrap_threshold=0):
 
 
 if __name__ == '__main__':
-    bootstrapFilter(snakemake.input[0], snakemake.output[0],snakemake.config['Thresholds']['bootstrap_threshold'])
+    bootstrapFilter(snakemake.input[0], snakemake.output[0],snakemake.params.data_type,snakemake.config['Thresholds']['bootstrap_threshold'])

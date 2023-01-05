@@ -10,6 +10,7 @@ rule rf_distance:
 rule bootstrap_consensus:
     input: "results/windows/window_position_{position}.fa",
     output: "results/bootstrap_consensus/window_position_{position}",
+    params: data_type = config['params']['data_type']
     script:
         "../scripts/bootstrapFilter.py"
 #------------------------------------------------------------
