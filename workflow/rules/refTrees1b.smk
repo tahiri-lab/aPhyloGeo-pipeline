@@ -5,7 +5,6 @@ rule create_Matrix:
     params:
         file_name = config['params']['geo_file'],
         df_geo = pd.read_csv(file_name)
-    conda:
-        "../env/phylo.yaml"
+    #conda: "../env/phylo.yaml"
     script:
         "../scripts/getGeotree.py"

@@ -91,8 +91,7 @@ rule all:
 checkpoint rf_phyML: 
    input: expand("results/rf/{position}.{feature}.rf_ete", position = POS, feature=feature_names)
    output: "results/rf_phyML.csv"
-   conda:
-        "env/python.yaml"
+   #conda: "env/python.yaml"
    script: "scripts/rfAfterPhyML.py"
 
 rule qc_windows:
@@ -100,8 +99,7 @@ rule qc_windows:
         windows_filtered = "results/windows_filtered/window_filtered_{windows_pos}.fa"
     params: 
         alignment_output = config['params']['seq_file']
-    conda:
-        "env/biopython.yaml"
+    #conda: "env/biopython.yaml"
     script: "scripts/getAlimentWindowsFiltered.py"   
 #----------------------RaxML-NG-------------------------------------
 rule runRaxML:
@@ -116,16 +114,14 @@ rule runRaxML:
             temp("results/RAxML/{windows_pos}.raxml.startTree"),
             temp("results/RAxML/{windows_pos}.raxml.support"),
     params: data_type = config['params']['data_type']
-    conda:
-        "env/raxML.yaml"
+    #conda: "env/raxML.yaml"
     script:
         "scripts/runRaxMl.py"
 
 rule bootstrapFilter2:
     input: "results/RAxML/{windows_pos}.raxml.bestTree"
     output: "results/RaxMLBootstrap/{windows_pos}.raxmlBootstrap"
-    conda:
-        "env/numpy.yaml"
+    #conda: "env/numpy.yaml"
     script:
         "scripts/FilterBootstrap2.py"
 
@@ -134,8 +130,7 @@ rule rf_distance2:
            ref_tree = "results/reference_tree/{feature}_newick",
            bootstrap_value = "results/RaxMLBootstrap/{windows_pos}.raxmlBootstrap"
     output: ete3_output = "results/rf2/{windows_pos}.{feature}.rf_ete",
-    conda:
-        "env/rf.yaml"
+    #conda: "env/rf.yaml"
     script:
         "scripts/FilterRf2.py"
 
@@ -144,8 +139,7 @@ rule runFasttree:
     input: "results/windows_filtered/window_filtered_{windows_pos}.fa"
     output: "results/fastTree/window_filtered.{windows_pos}.fastTree"
     params: data_type = config['params']['data_type']
-    conda:
-        "env/fastTree.yaml"
+    #conda: "env/fastTree.yaml"
     script:
         "scripts/runFastTree.py"
 
@@ -153,8 +147,7 @@ rule runFasttree:
 rule bootstrapFilter_fasttree:
     input: "results/fastTree/window_filtered.{windows_pos}.fastTree"
     output: "results/fastTreeBootstrap/{windows_pos}.fastTreeBootstrap"
-    conda:
-        "env/numpy.yaml"
+    #conda: "env/numpy.yaml"
     script:
         "scripts/FilterBootstrap2.py"
 
@@ -163,8 +156,7 @@ rule rf_distance_fasttree:
            ref_tree = "results/reference_tree/{feature}_newick",
            bootstrap_value = "results/fastTreeBootstrap/{windows_pos}.fastTreeBootstrap"
     output: ete3_output = "results/rf2_fastTree/{windows_pos}.{feature}.rf_ete",
-    conda:
-        "env/rf.yaml"
+    #conda: "env/rf.yaml"
     script:
         "scripts/FilterRf2.py"
 
