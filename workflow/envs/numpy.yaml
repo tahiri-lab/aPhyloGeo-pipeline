@@ -1,0 +1,8 @@
+name: numpy
+channels:
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8.8
+  - pip:
+    - numpy==1.24.1

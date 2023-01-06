@@ -1,0 +1,6 @@
+name: raxML
+channels:
+  - defaults
+dependencies:
+  - python=3.8.8
+  - raxml-ng=0.9.0

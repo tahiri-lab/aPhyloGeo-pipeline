@@ -1,0 +1,8 @@
+name: rf
+channels:
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8.8
+  - pip:
+    - robinson-foulds==1.1

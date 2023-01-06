@@ -1,0 +1,8 @@
+name: biopython
+channels:
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8.8
+  - pip:
+    - biopython==1.80
