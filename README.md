@@ -14,6 +14,26 @@ A Snakemake workflow for phylogeographic analysis.
 aPhyloGeo is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.
 
 
+## Dependencies
+
+-   [Python](https://www.python.org/)
+-   [Conda](https://conda.io/)  - package/environment management system
+-   [Snakemake](https://snakemake.readthedocs.io/)  - workflow management system
+
+The workflow includes the following Python packages:
+- [biopython](https://pypi.org/project/biopython/)
+- [robinson-fould](https://pypi.org/project/robinson-foulds/)
+- [numpy](https://pypi.org/project/numpy/)
+- [pandas](https://pypi.org/project/pandas/)
+
+
+The workflow includes the following bioinformatics tools:
+- [raxml-ng](https://github.com/amkozlov/raxml-ng)
+- [fasttree](http://www.microbesonline.org/fasttree/)
+
+The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs),[[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml)
+
+
 
 
 ## Usage
