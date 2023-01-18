@@ -33,7 +33,26 @@ The workflow includes the following bioinformatics tools:
 
 The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs),[[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml)
 
+**1. Clone this repo.**
 
+    git clone https://github.com/tahiri-lab/aPhyloGeo-pipeline.git
+    cd aPhyloGeo-pipeline
+
+
+**2. Install dependencies.**
+
+    # download Miniconda3 installer
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    
+    # install Conda (respond by 'yes')
+    bash miniconda.sh
+    
+    # update Conda
+    conda update -y conda
+    
+    # create a new environment with dependencies & activate it
+    conda env create -n aphyloGeo -f environment.yaml
+    conda activate aphyloGeo
 
 
 ## Usage
