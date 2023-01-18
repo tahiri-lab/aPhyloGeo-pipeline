@@ -4,7 +4,9 @@
 [![GitHub actions status](https://github.com/<owner>/<repo>/workflows/Tests/badge.svg?branch=main)](https://github.com/<owner>/<repo>/actions?query=branch%3Amain+workflow%3ATests)
 
 
-A Snakemake workflow for `<description>`
+A Snakemake workflow for phylogeographic analysis. 
+
+aPhyloGeo is a user-friendly, scalable, reproducible, and comprehensive pipeline that can explore the correlation between specific genes (or gene segments) and environmental factors.
 
 
 ## Usage
