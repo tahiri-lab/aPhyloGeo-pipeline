@@ -4,8 +4,8 @@ Thresholds:
   rf_threshold: 99
 params:
   data_type: aa
-  geo_file: data/geo_p.csv
-  seq_file: data/align_p.fa
+  geo_file: config/geo.csv
+  seq_file: config/align.fa
   specimen_id: id
   step_size: 200
   window_size: 100
