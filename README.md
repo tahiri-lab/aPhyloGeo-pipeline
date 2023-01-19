@@ -9,7 +9,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/tahiri-lab/aPhylogeo.svg?maxAge=3600)](https://github.com/tahiri-lab/aPhylogeo/releases/)
 
 
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;A Snakemake workflow for phylogeographic analysis.</p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Snakemake workflow for phylogeographic analysis.</p>
 
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;aPhyloGeo-pipeline is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.</p>
 
