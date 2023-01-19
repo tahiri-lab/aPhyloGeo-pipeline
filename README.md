@@ -8,11 +8,12 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ftahiri-lab%2FaPhylogeo&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 [![GitHub release](https://img.shields.io/github/v/release/tahiri-lab/aPhylogeo.svg?maxAge=3600)](https://github.com/tahiri-lab/aPhylogeo/releases/)
 
-A Snakemake workflow for phylogeographic analysis. 
 
-aPhyloGeo-pipeline is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;A Snakemake workflow for phylogeographic analysis.</p>
 
-To investigate the possible correlation between the diversity of specific genes (or gene fragments) and the geographical distribution of these species, (1) we first added the strategy of sliding windows to the traditional phylogeny study. By setting the sliding window size and step size, the alignment of multiple sequences was cut into windows, and a phylogenetic tree was constructed for each window. (2) A cluster analysis was performed for each geographical factor. For each geographical factor, a distance matrix was calculated, and then a reference tree was created based on the distance matrix and neighbour-joining clustering method. The leaf nodes of these reference trees correspond to the environmental factors of the species involved in the phylogenetic trees. (3) Subsequently, the correlations between phylogenetic and reference trees were evaluated using the Robinson-Foulds (RF) distance calculation. RF distances were calculated for each combination of the phylogenetic tree and the reference tree. (4) Eventually, thresholds were used to screen out gene fragments in which patterns of variation within species coincide with a specific geographic feature. These screened fragments can provide meaningful reference information for further studies.
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;aPhyloGeo-pipeline is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.</p>
+
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;To investigate the possible correlation between the diversity of specific genes (or gene fragments) and the geographical distribution of these species, (1) we first added the strategy of sliding windows to the traditional phylogeny study. By setting the sliding window size and step size, the alignment of multiple sequences was cut into windows, and a phylogenetic tree was constructed for each window. (2) A cluster analysis was performed for each geographical factor. For each geographical factor, a distance matrix was calculated, and then a reference tree was created based on the distance matrix and neighbour-joining clustering method. The leaf nodes of these reference trees correspond to the environmental factors of the species involved in the phylogenetic trees. (3) Subsequently, the correlations between phylogenetic and reference trees were evaluated using the Robinson-Foulds (RF) distance calculation. RF distances were calculated for each combination of the phylogenetic tree and the reference tree. (4) Eventually, thresholds were used to screen out gene fragments in which patterns of variation within species coincide with a specific geographic feature. These screened fragments can provide meaningful reference information for further studies.</p>
 
 ## Dependencies
 
@@ -63,7 +64,7 @@ The software dependencies can be found in the conda environment files: [[1]](htt
 -   **config file**:
     
     -   [`config.yaml`](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/config/config.yaml)  - analysis-specific settings (e.g., bootstrap_threshold, rf_threshold, step_size, window_size, data_type etc.) <br>
-**Note**: You should set the parameters and threshold in the `config.yaml` file according to your research needs. When setting the parameters and threshold, please modify the corresponding values. Remember **not** to change the parameter names or file names.
+**Note**:You should set the parameters and threshold in the `config.yaml` file according to your research needs. When setting the parameters and threshold, please modify the corresponding values. Remember **not** to change the parameter names or file names.
 	-   **Thresholds** in `config.yaml`:
 		- `bootstrap_threshold`: Only sliding windows with bootstrap values greater than user-set bootstrap_threshold will be written to the output file.
 		- `rf_threshold`: The tree distance between each combination of sliding windows and environmental features will be calculated. Only sliding windows with Robinson–Foulds (RF) distance below the user-set bootstrap_threshold will be written to the output file.
@@ -71,7 +72,7 @@ The software dependencies can be found in the conda environment files: [[1]](htt
 			- `data_type`: `aa` for the amino acid dataset (case insensitive); Any other values set by the user will be treated as nucleotide dataset (default).
 			- `geo_file`:  the path of input file (the environmental data `.csv` )
 			- `seq_file`:  the path of input file (the Multiple Sequence Alignment data `.fasta` ) <br>
-		**Note**: If you want to use a Relative Path to describe the input file, you should use the path related to the `workflow` directory (i.e., the default Present Working Directory should be the `workflow`).
+		**Note**: If you want to use a Relative Path to describe the input file, you should use the path related to the `workflow` directory (i.e., the default Present Working Directory should be the `workflow`).<br>
 			- `specimen_id`: the name of the column containing the sample id in `geo_file`
 			- `step_size`: the size of the Sliding window movement step (bp)
 			- `window_size`: the size of the Sliding window (bp)
@@ -91,7 +92,7 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     
     -   (filtered) sliding windows with Robinson–Foulds (RF) distance values below the user-set threshold and bootstrap values greater than the user-set threshold in  `.csv`  (comma-separated values files).
     -  `.csv` and related metadata will be stored in the 'workflow/results' directory.
- 
+
 
 **4. Execute the workflow.**
 
