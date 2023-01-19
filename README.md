@@ -106,6 +106,11 @@ _Locally_
     
     snakemake --use-conda --cores all
     
+    # If you are in a conda environment where all dependencies are already installed
+    #If you want to use N cores, say --cores N or -cN.
+    
+    snakemake --cores all
+    
     # 'dry' run only checks I/O files
     
     snakemake -n
