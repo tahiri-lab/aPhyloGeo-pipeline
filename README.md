@@ -65,16 +65,17 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     -   [`config.yaml`](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/config/config.yaml)  - analysis-specific settings (e.g., bootstrap_threshold, rf_threshold, step_size, window_size, data_type etc.) <br>
 **Note**: You should set the parameters and threshold in the `config.yaml` file according to your research needs. When setting the parameters and threshold, please modify the corresponding values. Remember **not** to change the parameter names or file names.
 	-   **Thresholds** in `config.yaml`:
-		- bootstrap_threshold: Only sliding windows with bootstrap values greater than user-set bootstrap_threshold will be written to the output file.
-		- rf_threshold: The tree distance between each combination of sliding windows and environmental features will be calculated. Only sliding windows with Robinson–Foulds (RF) distance below the user-set bootstrap_threshold will be written to the output file.
+		- `bootstrap_threshold`: Only sliding windows with bootstrap values greater than user-set bootstrap_threshold will be written to the output file.
+		- `rf_threshold`: The tree distance between each combination of sliding windows and environmental features will be calculated. Only sliding windows with Robinson–Foulds (RF) distance below the user-set bootstrap_threshold will be written to the output file.
 	-    **params** in `config.yaml`:
-		- data_type: `aa` for the amino acid dataset (case insensitive); Any other values set by the user will be treated as nucleotide dataset (default).
-		- geo_file:  the location of input file (the environmental data `.csv` )
-		- seq_file:  the location of input file (the Multiple Sequence Alignment data `.fasta` )
-		- specimen_id: the name of the column containing the sample id in `geo_file`
-		- step_size: the size of the Sliding window movement step (bp)
-		- window_size: the size of the Sliding window (bp)
-		- strategy: For constructing the phylogenetic tree,  two alternative algorithms are provided, RAxML-Ng and FastTree. `fasttree` for the FastTree strategy (case insensitive); Any other values set by the user will be treated as RAxML-Ng strategy (default).
+			- `data_type`: `aa` for the amino acid dataset (case insensitive); Any other values set by the user will be treated as nucleotide dataset (default).
+			- `geo_file`:  the path of input file (the environmental data `.csv` )
+			- `seq_file`:  the path of input file (the Multiple Sequence Alignment data `.fasta` ) <br>
+		**Note**: If you want to use a Relative Path to describe the input file, you should use the path related to the `workflow` directory (i.e., the default Present Working Directory should be the `workflow`).
+			- `specimen_id`: the name of the column containing the sample id in `geo_file`
+			- `step_size`: the size of the Sliding window movement step (bp)
+			- `window_size`: the size of the Sliding window (bp)
+			- `strategy`: For constructing the phylogenetic tree,  two alternative algorithms are provided, RAxML-Ng and FastTree. `fasttree` for the FastTree strategy (case insensitive); Any other values set by the user will be treated as RAxML-Ng strategy (default).
   
     
 -   **input files**:
@@ -89,7 +90,7 @@ The software dependencies can be found in the conda environment files: [[1]](htt
 -   **output files**:
     
     -   (filtered) sliding windows with Robinson–Foulds (RF) distance values below the user-set threshold and bootstrap values greater than the user-set threshold in  `.csv`  (comma-separated values files).
-    -  `.csv` and related metadata will be stored in the 'workflow/results' folder.
+    -  `.csv` and related metadata will be stored in the 'workflow/results' directory.
  
 
 **4. Execute the workflow.**
@@ -106,12 +107,15 @@ _Locally_
     snakemake --use-conda --cores all
     
     # 'dry' run only checks I/O files
+    
     snakemake -n
     
     # 'dry-run' print shell commands
+    
     snakemake -np
     
     # force snakemake to run the job. By default, if snakemake thinks the pipeline doesn’t need updating, snakemake will not run
+    
     snakemake -F
     
 
