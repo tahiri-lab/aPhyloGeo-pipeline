@@ -126,7 +126,14 @@ _Locally_
 
 ## Usage (Option 2)
 
-The usage of this workflow is described in the [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/?usage=<owner>%2F<repo>).
+The usage of this workflow is described in the [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/?usage=tahiri-lab%2FaPhyloGeo-pipeline).
 
 If you use this workflow in a paper, don't forget to give credits to the authors by citing the URL of this (original) <repo>sitory and its DOI (see above).
+
+
+## Citation
+
+A manuscript for aPhyloGeo-pipeline is in preparation.
+	
+	
 
