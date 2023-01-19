@@ -1,10 +1,54 @@
+# Snakemake workflow: aPhyloGeo
+A Snakemake workflow for phylogeographic analysis. 
 
-## General settings
-
-To configure this workflow, modify config/config.yaml according to your needs, following the explanations provided in the file.
+aPhyloGeo is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.
 
 
+## Dependencies
 
+-   [Python](https://www.python.org/)
+-   [Conda](https://conda.io/)  - package/environment management system
+-   [Snakemake](https://snakemake.readthedocs.io/)  - workflow management system
+
+The workflow includes the following Python packages:
+- [biopython](https://pypi.org/project/biopython/)
+- [robinson-fould](https://pypi.org/project/robinson-foulds/)
+- [numpy](https://pypi.org/project/numpy/)
+- [pandas](https://pypi.org/project/pandas/)
+
+
+The workflow includes the following bioinformatics tools:
+- [raxml-ng](https://github.com/amkozlov/raxml-ng)
+- [fasttree](http://www.microbesonline.org/fasttree/)
+
+The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs),[[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml)
+
+## Usage 
+
+**1. Clone this repo.**
+
+    git clone https://github.com/tahiri-lab/aPhyloGeo-pipeline.git
+    cd aPhyloGeo-pipeline
+
+
+**2. Install dependencies.**
+
+    # download Miniconda3 installer
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    
+    # install Conda (respond by 'yes')
+    bash miniconda.sh
+    
+    # update Conda
+    conda update -y conda
+    
+    # create a new environment with dependencies & activate it
+    conda env create -n aphyloGeo -f environment.yaml
+    conda activate aphyloGeo
+
+
+
+**3. Configure the workflow.**
 
 -   **config file**:
     
@@ -37,3 +81,35 @@ To configure this workflow, modify config/config.yaml according to your needs, f
     
     -   (filtered) sliding windows with Robinson–Foulds (RF) distance values below the user-set threshold and bootstrap values greater than the user-set threshold in  `.csv`  (comma-separated values files).
     -  `.csv` and related metadata will be stored in the 'workflow/results' directory.
+ 
+
+**4. Execute the workflow.**
+
+    cd workflow
+
+_Locally_
+
+    # run workflow
+    #you need to specify the maximum number of CPU cores to be used at the same time. 
+    #If you want to use N cores, say --cores N or -cN. 
+    #For all cores on your system (be sure that this is appropriate) use --cores all. 
+    
+    snakemake --use-conda --cores all
+    
+    # If you are in a conda environment where all dependencies are already installed
+    #If you want to use N cores, say --cores N or -cN.
+    
+    snakemake --cores all
+    
+    # 'dry' run only checks I/O files
+    
+    snakemake -n
+    
+    # 'dry-run' print shell commands
+    
+    snakemake -np
+    
+    # force snakemake to run the job. By default, if snakemake thinks the pipeline doesn’t need updating, snakemake will not run
+    
+    snakemake -F
+    
