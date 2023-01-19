@@ -1,6 +1,6 @@
-name: fastTree
+---
 channels:
-  - defaults
+  - conda-forge
 dependencies:
   - python=3.8.8
   - fasttree=2.1.11
