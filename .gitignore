@@ -1,4 +1,5 @@
 results/**
+workflow/results/**
 resources/**
 logs/**
 data/**
