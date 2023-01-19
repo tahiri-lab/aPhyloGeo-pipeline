@@ -33,6 +33,8 @@ The workflow includes the following bioinformatics tools:
 
 The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs),[[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml)
 
+## Usage 
+
 **1. Clone this repo.**
 
     git clone https://github.com/tahiri-lab/aPhyloGeo-pipeline.git
@@ -87,9 +89,33 @@ The software dependencies can be found in the conda environment files: [[1]](htt
 -   **output files**:
     
     -   (filtered) sliding windows with Robinson–Foulds (RF) distance values below the user-set threshold and bootstrap values greater than the user-set threshold in  `.csv`  (comma-separated values files).
+    -  `.csv` and related metadata will be stored in the 'workflow/results' folder.
+ 
+
+**4. Execute the workflow.**
+
+    cd workflow
+
+_Locally_
+
+    # run workflow
+    #you need to specify the maximum number of CPU cores to be used at the same time. 
+    #If you want to use N cores, say --cores N or -cN. 
+    #For all cores on your system (be sure that this is appropriate) use --cores all. 
+    
+    snakemake --use-conda --cores all
+    
+    # 'dry' run only checks I/O files
+    snakemake -n
+    
+    # 'dry-run' print shell commands
+    snakemake -np
+    
+    # force snakemake to run the job. By default, if snakemake thinks the pipeline doesn’t need updating, snakemake will not run
+    snakemake -F
     
 
-## Usage
+## Usage (Option 2)
 
 The usage of this workflow is described in the [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/?usage=<owner>%2F<repo>).
 
