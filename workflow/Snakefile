@@ -7,11 +7,11 @@ configfile: "config/config.yaml"
 import pandas as pd
 import subprocess
 import yaml
-from Bio import SeqIO
 import os
 import shutil
 import numpy as np
 from csv import writer
+from Bio import SeqIO
 
 #---------------------------------------------
 def slidingWindow(alignment_output, win=0, step=0):
