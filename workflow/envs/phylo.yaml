@@ -5,6 +5,5 @@ channels:
 dependencies:
   - python=3.8.8
   - pip:
-    - bio==1.5.2
     - biopython==1.80
     - pandas==1.5.2
