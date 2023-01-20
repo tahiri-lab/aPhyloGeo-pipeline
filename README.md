@@ -53,8 +53,8 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     conda update -y conda
     
     # create a new environment with dependencies & activate it
-    conda env create -n aphyloGeo -f environment.yaml
-    conda activate aphyloGeo
+    conda env create -n aPhyloGeo -f environment.yaml
+    conda activate aPhyloGeo
 
 
 
