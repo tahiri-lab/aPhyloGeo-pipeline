@@ -69,13 +69,15 @@ The software dependencies can be found in the conda environment files: [[1]](htt
 		- `rf_threshold`: The tree distance between each combination of sliding windows and environmental features will be calculated. Only sliding windows with Robinson–Foulds (RF) distance below the user-set bootstrap_threshold will be written to the output file.
 	-    **params** in `config.yaml`:
 			- `data_type`: `aa` for the amino acid dataset (case insensitive); Any other values set by the user will be treated as nucleotide dataset (default).
+			- `step_size`: the size of the Sliding window movement step (bp)
+			- `window_size`: the size of the Sliding window (bp)
+			- `strategy`: For constructing the phylogenetic tree,  two alternative algorithms are provided, RAxML-Ng and FastTree. `fasttree` for the FastTree strategy (case insensitive); Any other values set by the user will be treated as RAxML-Ng strategy (default).
 			- `geo_file`:  the path of input file (the environmental data `.csv` )
 			- `seq_file`:  the path of input file (the Multiple Sequence Alignment data `.fasta` ) <br>
 		**Note**: If you want to use a Relative Path to describe the input file, you should use the path related to the `aPhyloGeo-pipeline` directory (i.e., the default Present Working Directory should be the `workflow`).<br>
 			- `specimen_id`: the name of the column containing the sample id in `geo_file`
-			- `step_size`: the size of the Sliding window movement step (bp)
-			- `window_size`: the size of the Sliding window (bp)
-			- `strategy`: For constructing the phylogenetic tree,  two alternative algorithms are provided, RAxML-Ng and FastTree. `fasttree` for the FastTree strategy (case insensitive); Any other values set by the user will be treated as RAxML-Ng strategy (default).
+			- `feature_names`: The names of the columns corresponding to the environmental factors that will be involved in the analysis (in `geo_file`) <br>
+		**Note**: Each column name is on a separate line, don't forget to keep the "-" in front of it.
   
     
 -   **input files**:
