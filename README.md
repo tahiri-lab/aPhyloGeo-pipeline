@@ -136,4 +136,5 @@ If you use this workflow in a paper, don't forget to give credits to the authors
 A manuscript for aPhyloGeo-pipeline is in preparation.
 	
 	
-
+# Contact
+Please email us at : <Nadia.Tahiri@USherbrooke.ca> for any question or feedback.
