@@ -31,7 +31,7 @@ The workflow includes the following bioinformatics tools:
 - [raxml-ng](https://github.com/amkozlov/raxml-ng)
 - [fasttree](http://www.microbesonline.org/fasttree/)
 
-The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs),[[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml)
+The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs) and [[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml).
 
 ## Usage 
 
