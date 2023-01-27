@@ -24,8 +24,12 @@ if not os.path.exists("results/output.csv"):
 #-------------------------------
 
 # global variable to use
-file_name = config['params']['geo_file']
-specimen_id = config['params']['specimen_id']
+# file_name = config['params']['geo_file']
+file_name = config[1][4]
+
+# specimen_id = config['params']['specimen_id']
+specimen_id = config[1][6]
+
 df_geo = pd.read_csv(file_name)
 feature_names = config['params']['feature_names']
 
