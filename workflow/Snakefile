@@ -8,7 +8,7 @@ min_version("7.17.0")
 
 # this container defines the underlying OS for each job when using the workflow
 # with --use-conda --use-singularity
-container: "docker://continuumio/miniconda3"
+#container: "docker://continuumio/miniconda3"
 
 
 ##### Config file and sample sheets  #####
@@ -16,7 +16,7 @@ configfile: "config/config.yaml"
 
 
 ##### load rules #####
-include: 'rules/preprocess.smk'
+include: 'rules/common.smk'
 # step 1a: Sliding windows
 include: 'rules/slidingWindows1a.smk'
 
