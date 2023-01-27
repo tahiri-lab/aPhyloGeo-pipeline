@@ -7,7 +7,11 @@ import numpy as np
 from csv import writer
 from itertools import groupby
 
-
+# Program to convert yaml file to dictionary
+import yaml
+with open('config.yaml') as f:
+    # use safe_load instead load
+    config = yaml.safe_load(f)
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
     os.makedirs("results/RAxML")
