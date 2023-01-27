@@ -12,7 +12,7 @@ from pathlib import Path
 import yaml
 from yaml.loader import BaseLoader
 
-ROOT_DIR = Path(__file__).parents[0]
+ROOT_DIR = Path(__file__).parents[1]
 theConfig = ROOT_DIR.joinpath("config.yaml")
 # opening a file
 with open(theConfig, 'r') as stream:
