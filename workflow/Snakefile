@@ -6,20 +6,9 @@ min_version("7.17.0")
 ##### Config file and sample sheets  #####
 # The following is equivalent to what snakemake does with the configuration file:
 
-# configfile: "config/config.yaml"
+configfile: "/github/workspace/workflow/config.yaml"
 # Program to convert yaml file to dictionary
-from pathlib import Path
-import yaml
-from yaml.loader import BaseLoader
 
-theConfig = "/github/workspace/workflow/config.yaml"
-# opening a file
-with open(theConfig, 'r') as stream:
-    try:
-        # Converts yaml document to python object
-        config = yaml.load(stream, Loader=BaseLoader)     
-    except yaml.YAMLError as e:
-        print(e)
 
     
 ##### setup singularity #####
