@@ -9,9 +9,8 @@ from itertools import groupby
 
 # Program to convert yaml file to dictionary
 import yaml
-with open('config/config.yaml') as f:
-    # use safe_load instead load
-    config = yaml.safe_load(f)
+config = yaml.load("config.yaml")
+
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
     os.makedirs("results/RAxML")
