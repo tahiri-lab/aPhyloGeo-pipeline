@@ -56,7 +56,7 @@ def load_configfile(configpath):
 
 # configfile: "config/config.yaml"
 
-config = load_configfile("config/config.yaml")
+config = load_configfile("config.yaml")
 
 ##### setup singularity #####
 # this container defines the underlying OS for each job when using the workflow
