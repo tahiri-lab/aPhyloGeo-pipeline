@@ -6,7 +6,7 @@ min_version("7.17.0")
 ##### Config file and sample sheets  #####
 # The following is equivalent to what snakemake does with the configuration file:
 
-configfile: "/github/workspace/workflow/config.yaml"
+configfile: "github/workspace/workflow/config.yaml"
 # Program to convert yaml file to dictionary
 
 
