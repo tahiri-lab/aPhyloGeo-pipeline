@@ -8,13 +8,6 @@ min_version("7.17.0")
 
 # configfile: "github/workspace/workflow/config.yaml"
     
-
-# Program to convert yaml file to dictionary
-import yaml
-with open('config.yaml') as f:
-    # use safe_load instead load
-    config = yaml.safe_load(f)
-    
 ##### setup singularity #####
 # this container defines the underlying OS for each job when using the workflow
 # with --use-conda --use-singularity
