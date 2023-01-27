@@ -1,0 +1,18 @@
+thresholds:
+  bootstrap_threshold: 0
+  rf_threshold: 99
+params:
+  data_type: dna
+  step_size: 200
+  window_size: 250
+  strategy: fasttree
+  geo_file: config/geo.csv
+  seq_file: config/align.fa
+  specimen_id: id
+  feature_names:
+    - ALLSKY_SFC_SW_DWN
+    - T2M
+    - QV2M
+    - PRECTOTCORR
+    - WS10M
+  
