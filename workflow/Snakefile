@@ -4,21 +4,15 @@ from pathlib import Path
 ##### set minimum snakemake version #####
 min_version("7.17.0")
 
-# Get ROOT_DIR (as in definitions.py)
-
-#ROOT_DIR = Path(__file__).parents[0]
-#theConfig = ROOT_DIR.joinpath("config/config.yaml")
-#configfile: theConfig
-
 ##### Config file and sample sheets  #####
-configfile: "config/config1.yaml"
+configfile: "config/config.yaml"
 
 
 ##### setup singularity #####
 
 # this container defines the underlying OS for each job when using the workflow
 # with --use-conda --use-singularity
-#container: "docker://continuumio/miniconda3"
+container: "docker://continuumio/miniconda3"
 
 
 
