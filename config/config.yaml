@@ -1,5 +1,4 @@
----
-Thresholds:
+thresholds:
   bootstrap_threshold: 0
   rf_threshold: 99
 params:
