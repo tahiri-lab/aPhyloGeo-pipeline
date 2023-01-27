@@ -9,7 +9,19 @@ min_version("7.17.0")
 
 ##### Config file and sample sheets  #####
 # The following is equivalent to what snakemake does with the configuration file:
-config = yaml.load("config.yaml", Loader=yaml.Loader)
+# From https://stackoverflow.com/a/21912744/84349
+class OrderedLoader(yaml.Loader):
+    pass
+
+def construct_mapping(loader, node):
+    loader.flatten_mapping(node)
+    return collections.OrderedDict(loader.construct_pairs(node))
+
+OrderedLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping
+)
+
+config = yaml.load("config.yaml", Loader=OrderedLoader)
 # configfile: "config/config.yaml"
 
 
