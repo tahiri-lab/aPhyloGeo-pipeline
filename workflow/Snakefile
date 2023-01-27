@@ -31,10 +31,10 @@ include: 'rules/rf_phyML.smk'
 #step6 to end
 include: 'rules/phyloGeo.smk'
 
+    
 #----------------------------------------------------
 ##### target rules #####
 
-
-
 rule all:
-    input: get_windowedFilted
+    input: 
+        get_windowedFilted
