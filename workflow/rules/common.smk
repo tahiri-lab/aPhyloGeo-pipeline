@@ -70,7 +70,7 @@ POS = slidingWindow(alignment_output, window_size, step_size)
 
 #---------------------------------------------
 def get_windowedFilted(wildcards):
-    rf_threshold = config['Thresholds']['rf_threshold']
+    rf_threshold = config['thresholds']['rf_threshold']
     strategy = config['params']['strategy']
     with checkpoints.rf_phyML.get().output[0].open() as f:
         qc = pd.read_csv(f)
