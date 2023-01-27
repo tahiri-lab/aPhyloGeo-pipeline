@@ -6,7 +6,19 @@ import shutil
 import numpy as np
 from csv import writer
 from itertools import groupby
-#from Bio import SeqIO
+from snakemake.utils import min_version
+##### set minimum snakemake version #####
+min_version("7.17.0")
+
+##### Config file and sample sheets  #####
+configfile: "config/config.yaml"
+
+##### setup singularity #####
+
+# this container defines the underlying OS for each job when using the workflow
+# with --use-conda --use-singularity
+container: "docker://continuumio/miniconda3"
+
 
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
