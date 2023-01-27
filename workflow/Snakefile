@@ -6,54 +6,6 @@ min_version("7.17.0")
 ##### Config file and sample sheets  #####
 # The following is equivalent to what snakemake does with the configuration file:
 
-def _load_configfile(configpath_or_obj, filetype="Config"):
-    "Tries to load a configfile first as JSON, then as YAML, into a dict."
-    import yaml
-
-    if isinstance(configpath_or_obj, str) or isinstance(configpath_or_obj, Path):
-        obj = open(configpath_or_obj, encoding="utf-8")
-    else:
-        obj = configpath_or_obj
-
-    try:
-        with obj as f:
-            try:
-                return json.load(f, object_pairs_hook=collections.OrderedDict)
-            except ValueError:
-                f.seek(0)  # try again
-            try:
-                # From https://stackoverflow.com/a/21912744/84349
-                class OrderedLoader(yaml.Loader):
-                    pass
-
-                def construct_mapping(loader, node):
-                    loader.flatten_mapping(node)
-                    return collections.OrderedDict(loader.construct_pairs(node))
-
-                OrderedLoader.add_constructor(
-                    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping
-                )
-                return yaml.load(f, Loader=OrderedLoader)
-            except yaml.YAMLError:
-                raise WorkflowError(
-                    "Config file is not valid JSON or YAML. "
-                    "In case of YAML, make sure to not mix "
-                    "whitespace and tab indentation.".format(filetype)
-                )
-    except FileNotFoundError:
-        raise WorkflowError("{} file {} not found.".format(filetype, configpath))
-
-
-def load_configfile(configpath):
-    "Loads a JSON or YAML configfile as a dict, then checks that it's a dict."
-    config = _load_configfile(configpath)
-    if not isinstance(config, dict):
-        raise WorkflowError(
-            "Config file must be given as JSON or YAML " "with keys at top level."
-        )
-    return config
-
-
 # configfile: "config/config.yaml"
 
 config = load_configfile("config.yaml")
