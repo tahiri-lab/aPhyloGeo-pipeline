@@ -9,7 +9,7 @@ from itertools import groupby
 
 # Program to convert yaml file to dictionary
 import yaml
-config = yaml.load("config.yaml")
+config = yaml.load("config.yaml", Loader=yaml.Loader)
 
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
