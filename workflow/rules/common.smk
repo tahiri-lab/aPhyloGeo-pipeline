@@ -9,7 +9,7 @@ from itertools import groupby
 
 # Program to convert yaml file to dictionary
 import yaml
-with open('config.yaml') as f:
+with open('config/config.yaml') as f:
     # use safe_load instead load
     config = yaml.safe_load(f)
 #----------------------------------------------------
