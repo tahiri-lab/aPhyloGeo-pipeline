@@ -1,0 +1,14 @@
+---
+channels:
+  - defaults
+  - bioconda
+dependencies:
+  - python=3.8.8
+  - fasttree=2.1.11
+  - raxml-ng=0.9.0
+  - pip:
+    - snakemake==7.19.1
+    - biopython==1.80
+    - numpy==1.24.1
+    - pandas==1.5.2
+    - robinson-foulds==1.1 
