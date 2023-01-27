@@ -6,4 +6,5 @@ rule sliding_windows:
     params: 
         alignment_output = config['params']['seq_file']
     conda: "../envs/biopython.yaml"
+    log: "logs/sliding_windows/{position}.log"
     script: "../scripts/slidingWindows.py" 

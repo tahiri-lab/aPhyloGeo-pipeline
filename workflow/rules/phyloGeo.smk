@@ -1,11 +1,6 @@
 
 #----------------------------------------------------
 
-checkpoint rf_phyML: 
-   input: expand("results/rf/{position}.{feature}.rf_ete", position = POS, feature=feature_names)
-   output: "results/rf_phyML.csv"
-   conda: "../envs/python.yaml"
-   script: "../scripts/rfAfterPhyML.py"
 
 rule qc_windows:
     output: 
@@ -13,6 +8,7 @@ rule qc_windows:
     params: 
         alignment_output = config['params']['seq_file']
     conda: "../envs/biopython.yaml"
+    log: "logs/qc_windows/{windows_pos}.log"
     script: "../scripts/getAlimentWindowsFiltered.py"   
 #----------------------RaxML-NG-------------------------------------
 rule runRaxML:
@@ -28,6 +24,7 @@ rule runRaxML:
             temp("results/RAxML/{windows_pos}.raxml.support"),
     params: data_type = config['params']['data_type']
     conda: "../envs/raxML.yaml"
+    log: "logs/runRaxML/{windows_pos}.log"
     script:
         "../scripts/runRaxMl.py"
 
@@ -35,6 +32,7 @@ rule bootstrapFilter2:
     input: "results/RAxML/{windows_pos}.raxml.bestTree"
     output: "results/RaxMLBootstrap/{windows_pos}.raxmlBootstrap"
     conda: "../envs/numpy.yaml"
+    log: "logs/bootstrapFilter2/{windows_pos}.log"
     script:
         "../scripts/FilterBootstrap2.py"
 
@@ -44,6 +42,7 @@ rule rf_distance2:
            bootstrap_value = "results/RaxMLBootstrap/{windows_pos}.raxmlBootstrap"
     output: ete3_output = "results/rf2/{windows_pos}.{feature}.rf_ete",
     conda: "../envs/rf.yaml"
+    log: "logs/rf_distance2/{windows_pos}-{feature}.log"
     script:
         "../scripts/FilterRf2.py"
 
@@ -53,6 +52,7 @@ rule runFasttree:
     output: "results/fastTree/window_filtered.{windows_pos}.fastTree"
     params: data_type = config['params']['data_type']
     conda: "../envs/fastTree.yaml"
+    log: "logs/runFasttree/{windows_pos}.log"
     script:
         "../scripts/runFastTree.py"
 
@@ -61,6 +61,7 @@ rule bootstrapFilter_fasttree:
     input: "results/fastTree/window_filtered.{windows_pos}.fastTree"
     output: "results/fastTreeBootstrap/{windows_pos}.fastTreeBootstrap"
     conda: "../envs/numpy.yaml"
+    log: "logs/bootstrapFilter_fasttree/{windows_pos}.log"
     script:
         "../scripts/FilterBootstrap2.py"
 
@@ -70,6 +71,7 @@ rule rf_distance_fasttree:
            bootstrap_value = "results/fastTreeBootstrap/{windows_pos}.fastTreeBootstrap"
     output: ete3_output = "results/rf2_fastTree/{windows_pos}.{feature}.rf_ete",
     conda: "../envs/rf.yaml"
+    log: "logs/rf_distance_fasttree/{windows_pos}-{feature}.log"
     script:
         "../scripts/FilterRf2.py"
 

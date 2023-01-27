@@ -1,5 +1,5 @@
 from snakemake.utils import min_version
-
+##### set minimum snakemake version #####
 min_version("7.17.0")
 
 configfile: "config/config.yaml"
@@ -14,6 +14,11 @@ from csv import writer
 from itertools import groupby
 #from Bio import SeqIO
 
+##### setup singularity #####
+
+# this container defines the underlying OS for each job when using the workflow
+# with --use-conda --use-singularity
+container: "docker://continuumio/miniconda3"
 
 #----------------------------------------------------
 if not os.path.exists("results/RAxML"):
@@ -75,6 +80,8 @@ def slidingWindow(alignment_output, win=0, step=0):
 POS = slidingWindow(alignment_output, window_size, step_size)
 
 #---------------------------------------------
+##### load rules #####
+
 # step 1a: Sliding windows
 include: 'rules/slidingWindows1a.smk'
 
@@ -85,10 +92,14 @@ include: 'rules/refTrees1b.smk'
 # Step 2: Phylogenetic trees construction; Step3: Filtering -- Bootstrap of consensus; Step4: RF distance calculation; # Step 5: Filtering -- RF distance
 include: 'rules/phyML2.smk'
 
+include: 'rules/rf_phyML.smk'
+
 #step6 to end
 include: 'rules/phyloGeo.smk'
 
 #----------------------------------------------------
+##### target rules #####
+
 def get_windowedFilted(wildcards):
     rf_threshold = config['Thresholds']['rf_threshold']
     strategy = config['params']['strategy']

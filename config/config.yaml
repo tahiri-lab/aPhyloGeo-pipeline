@@ -4,7 +4,7 @@ Thresholds:
   rf_threshold: 99
 params:
   data_type: dna
-  step_size: 100
+  step_size: 200
   window_size: 250
   strategy: fasttree
   geo_file: config/geo.csv
