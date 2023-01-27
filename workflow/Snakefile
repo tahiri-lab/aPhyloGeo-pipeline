@@ -1,7 +1,19 @@
 from snakemake.utils import min_version
+from pathlib import Path
 
 ##### set minimum snakemake version #####
-min_version("6.4.1")
+min_version("7.17.0")
+
+# Get ROOT_DIR (as in definitions.py)
+
+#ROOT_DIR = Path(__file__).parents[0]
+#theConfig = ROOT_DIR.joinpath("config/config.yaml")
+#configfile: theConfig
+
+##### Config file and sample sheets  #####
+configfile: "config/config.yaml"
+
+
 
 
 ##### setup singularity #####
@@ -10,9 +22,6 @@ min_version("6.4.1")
 # with --use-conda --use-singularity
 #container: "docker://continuumio/miniconda3"
 
-
-##### Config file and sample sheets  #####
-configfile: "config/config.yaml"
 
 
 ##### load rules #####
