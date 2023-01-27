@@ -12,7 +12,7 @@ container: "docker://continuumio/miniconda3"
 
 
 ##### Config file and sample sheets  #####
-configfile: "config.yaml"
+configfile: "config/config.yaml"
 
 
 ##### load rules #####
