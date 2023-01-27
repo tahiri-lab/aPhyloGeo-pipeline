@@ -12,8 +12,7 @@ from pathlib import Path
 import yaml
 from yaml.loader import BaseLoader
 
-ROOT_DIR = "/github/workspace/workflow/"
-theConfig = ROOT_DIR.joinpath("config.yaml")
+theConfig = "/github/workspace/workflow/config.yaml"
 # opening a file
 with open(theConfig, 'r') as stream:
     try:
