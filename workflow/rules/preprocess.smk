@@ -10,8 +10,6 @@ from snakemake.utils import min_version
 ##### set minimum snakemake version #####
 min_version("7.17.0")
 
-##### Config file and sample sheets  #####
-configfile: "config/config.yaml"
 
 ##### setup singularity #####
 

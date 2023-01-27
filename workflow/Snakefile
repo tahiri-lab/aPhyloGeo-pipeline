@@ -1,3 +1,7 @@
+##### Config file and sample sheets  #####
+configfile: "config/config.yaml"
+
+
 ##### load rules #####
 include: 'rules/preprocess.smk'
 # step 1a: Sliding windows
