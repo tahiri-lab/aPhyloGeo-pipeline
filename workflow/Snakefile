@@ -9,7 +9,7 @@ min_version("7.17.0")
 
 ##### Config file and sample sheets  #####
 # The following is equivalent to what snakemake does with the configuration file:
-config = yaml.load("config.yaml")
+config = yaml.load("config.yaml", Loader=yaml.Loader)
 # configfile: "config/config.yaml"
 
 
