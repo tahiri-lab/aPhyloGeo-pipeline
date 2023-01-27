@@ -6,10 +6,14 @@ min_version("7.17.0")
 ##### Config file and sample sheets  #####
 # The following is equivalent to what snakemake does with the configuration file:
 
-configfile: "github/workspace/workflow/config.yaml"
+# configfile: "github/workspace/workflow/config.yaml"
+    
+
 # Program to convert yaml file to dictionary
-
-
+import yaml
+with open('config.yaml') as f:
+    # use safe_load instead load
+    config = yaml.safe_load(f)
     
 ##### setup singularity #####
 # this container defines the underlying OS for each job when using the workflow
