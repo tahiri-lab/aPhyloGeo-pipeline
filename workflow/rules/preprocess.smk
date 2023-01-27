@@ -6,16 +6,6 @@ import shutil
 import numpy as np
 from csv import writer
 from itertools import groupby
-from snakemake.utils import min_version
-##### set minimum snakemake version #####
-min_version("7.17.0")
-
-
-##### setup singularity #####
-
-# this container defines the underlying OS for each job when using the workflow
-# with --use-conda --use-singularity
-container: "docker://continuumio/miniconda3"
 
 
 #----------------------------------------------------
