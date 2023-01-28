@@ -3,7 +3,6 @@ A Snakemake workflow for phylogeographic analysis.
 
 aPhyloGeo is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.
 
-
 ## Dependencies
 
 -   [Python](https://www.python.org/)
@@ -21,7 +20,7 @@ The workflow includes the following bioinformatics tools:
 - [raxml-ng](https://github.com/amkozlov/raxml-ng)
 - [fasttree](http://www.microbesonline.org/fasttree/)
 
-The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs),[[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml)
+The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs) and [[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml).
 
 ## Usage 
 
@@ -29,6 +28,7 @@ The software dependencies can be found in the conda environment files: [[1]](htt
 
     git clone https://github.com/tahiri-lab/aPhyloGeo-pipeline.git
     cd aPhyloGeo-pipeline
+
 
 **2. Install dependencies.** <br><br>
 **2.1 If you do not have Conda installed, then use the following method to install it. If you already have Conda installed, then refer directly to the next step (2.2).**
@@ -42,11 +42,13 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     # update Conda
     conda update -y conda
     
- **2.2 Create a conda environment named aaa and install all the dependencies in that environment.** <br>
-   <br>
+  
+ **2.2 Create a conda environment named aaa and install all the dependencies in that environment.**<br>
+ 
  
     # create a new environment with dependencies 
     conda env create -n aPhyloGeo -f environment.yaml
+    
     
  **2.3 Activate the environment**   <br>
  
@@ -127,3 +129,4 @@ _Locally_  <br>
     # force snakemake to run the job. By default, if snakemake thinks the pipeline doesn’t need updating, snakemake will not run
     
     snakemake -F
+    
