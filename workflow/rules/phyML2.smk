@@ -15,6 +15,7 @@ rule bootstrap_consensus:
     params: data_type = config['params']['data_type']
     conda: "../envs/biopython.yaml"
     log: "logs/bootstrap_consensus/{position}.log"
+    priority: 50
     script:
         "../scripts/bootstrapFilter.py"
 #------------------------------------------------------------
