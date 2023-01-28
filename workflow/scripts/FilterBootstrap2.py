@@ -18,4 +18,4 @@ def filterBootstrap(raxmlTree,Bootstrap_file, bootstrap_threshold=0):
 
 
 if __name__ == '__main__':
-    filterBootstrap(snakemake.input[0], snakemake.output[0], snakemake.config['Thresholds']['bootstrap_threshold'])
+    filterBootstrap(snakemake.input[0], snakemake.output[0], snakemake.config['thresholds']['bootstrap_threshold'])

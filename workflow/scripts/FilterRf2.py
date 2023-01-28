@@ -27,4 +27,4 @@ def rfFilter(file_seqTree,file_refTree,file_bootstrap_value,ete3_output,window_p
                 
 
 if __name__ == '__main__':
-    rfFilter(snakemake.input.seq_tree,snakemake.input.ref_tree,snakemake.input.bootstrap_value,snakemake.output.ete3_output,snakemake.wildcards.windows_pos,snakemake.wildcards.feature, snakemake.config['Thresholds']['rf_threshold'])
+    rfFilter(snakemake.input.seq_tree,snakemake.input.ref_tree,snakemake.input.bootstrap_value,snakemake.output.ete3_output,snakemake.wildcards.windows_pos,snakemake.wildcards.feature, snakemake.config['thresholds']['rf_threshold'])
