@@ -16,6 +16,9 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
+      <a href="#about-the-project">About the project</a>
+    </li>
+    <li>
       <a href="#Dependencies">Dependencies</a>
     </li>
     <li>
@@ -28,7 +31,7 @@
 </details>
 
 
-
+# About the project
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;aPhyloGeo-pipeline is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.</p>
 
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;To investigate the possible correlation between the diversity of specific genes (or gene fragments) and the geographical distribution of these species, (1) we first added the strategy of sliding windows to the traditional phylogeny study. By setting the sliding window size and step size, the alignment of multiple sequences was cut into windows, and a phylogenetic tree was constructed for each window. (2) A cluster analysis was performed for each geographical factor. For each geographical factor, a distance matrix was calculated, and then a reference tree was created based on the distance matrix and neighbour-joining clustering method. The leaf nodes of these reference trees correspond to the environmental factors of the species involved in the phylogenetic trees. (3) Subsequently, the correlations between phylogenetic and reference trees were evaluated using the Robinson-Foulds (RF) distance calculation. RF distances were calculated for each combination of the phylogenetic tree and the reference tree. (4) Eventually, thresholds were used to screen out gene fragments in which patterns of variation within species coincide with a specific geographic feature. These screened fragments can provide meaningful reference information for further studies.</p>
