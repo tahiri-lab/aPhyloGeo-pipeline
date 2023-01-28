@@ -7,9 +7,6 @@ min_version("7.17.0")
 # The following is equivalent to what snakemake does with the configuration file:
 
 configfile: "config/config.yaml"
-# Program to convert yaml file to dictionary
-# import yaml
-# config = yaml.load("config.yaml", Loader=yaml.Loader)
     
 ##### setup singularity #####
 # this container defines the underlying OS for each job when using the workflow
