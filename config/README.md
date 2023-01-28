@@ -130,3 +130,13 @@ _Locally_  <br>
     
     snakemake -F
     
+    
+## Citation
+
+A manuscript for aPhyloGeo-pipeline is in preparation.
+	
+	
+## Contact
+Please email us at : <Nadia.Tahiri@USherbrooke.ca> for any question or feedback.
+
+    
