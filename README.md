@@ -1,4 +1,4 @@
-# Snakemake workflow: aPhyloGeo
+﻿﻿﻿﻿﻿﻿﻿﻿<h1  align="center"> Snakemake workflow: aPhyloGeo <p align='center'> 
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥7.17.0-brightgreen.svg)](https://snakemake.github.io)
 [![GitHub actions status](https://github.com/tahiri-lab/aPhyloGeo-pipeline/workflows/Tests/badge.svg?branch=main)](https://github.com/tahiri-lab/aPhyloGeo-pipeline/actions?query=branch%3Amain+workflow%3ATests)
