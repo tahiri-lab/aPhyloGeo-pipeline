@@ -1,5 +1,5 @@
 # Snakemake workflow: aPhyloGeo
-A Snakemake workflow for phylogeographic analysis. 
+A Snakemake workflow for phylogeographic analysis make by Wanlin Li and Tahiri Nadia from University of Sherbrooke (Quebec, Canada). 
 
 aPhyloGeo is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.
 
