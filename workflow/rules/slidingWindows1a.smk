@@ -1,5 +1,3 @@
-
-
 rule sliding_windows:
     output: 
         windows = "results/windows/window_position_{position}.fa"
