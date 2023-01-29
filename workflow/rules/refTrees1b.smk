@@ -1,4 +1,3 @@
-        
 rule create_Matrix:
     output:
         newick = 'results/reference_tree/{feature}_newick'
