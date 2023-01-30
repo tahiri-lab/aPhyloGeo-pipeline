@@ -1,7 +1,3 @@
-
-#----------------------------------------------------
-
-
 rule qc_windows:
     output: 
         windows_filtered = "results/windows_filtered/window_filtered_{windows_pos}.fa"
@@ -10,6 +6,7 @@ rule qc_windows:
     conda: "../envs/biopython.yaml"
     log: "logs/qc_windows/{windows_pos}.log"
     script: "../scripts/getAlimentWindowsFiltered.py"   
+        
 #----------------------RaxML-NG-------------------------------------
 rule runRaxML:
     input: "results/windows_filtered/window_filtered_{windows_pos}.fa"
@@ -56,7 +53,6 @@ rule runFasttree:
     script:
         "../scripts/runFastTree.py"
 
-
 rule bootstrapFilter_fasttree:
     input: "results/fastTree/window_filtered.{windows_pos}.fastTree"
     output: "results/fastTreeBootstrap/{windows_pos}.fastTreeBootstrap"
@@ -74,6 +70,3 @@ rule rf_distance_fasttree:
     log: "logs/rf_distance_fasttree/{windows_pos}-{feature}.log"
     script:
         "../scripts/FilterRf2.py"
-
-
-  
