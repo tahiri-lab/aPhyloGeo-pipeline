@@ -76,7 +76,15 @@ def get_windowedFilted(wildcards):
         windows = qc[qc["normalized_RF"]<= rf_threshold]["window_pos"].to_list()
         windows_filtered = list(filter(None,set(windows)))
     if strategy.lower() != "fasttree":
-        return expand("results/rf2/{windows_pos}.{feature}.rf_ete", windows_pos=windows_filtered,feature=feature_names)
+        return expand(
+            "results/rf2/{windows_pos}.{feature}.rf_ete", 
+            windows_pos=windows_filtered,
+            feature=feature_names
+        )
     else: 
-        return expand("results/rf2_fastTree/{windows_pos}.{feature}.rf_ete", windows_pos=windows_filtered,feature=feature_names)
+        return expand(
+            "results/rf2_fastTree/{windows_pos}.{feature}.rf_ete", 
+            windows_pos=windows_filtered,
+            feature=feature_names
+        )
 
