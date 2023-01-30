@@ -1,4 +1,3 @@
-
 from Bio import SeqIO
 
 
