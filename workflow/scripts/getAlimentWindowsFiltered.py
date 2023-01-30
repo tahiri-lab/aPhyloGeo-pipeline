@@ -1,6 +1,5 @@
 from Bio import SeqIO
 
-
 def getWindowsFiltered(alignment_output, window_pos, outfile_name):
     for seq_record in SeqIO.parse(alignment_output, "fasta"):
         start, end = window_pos.split('_')
