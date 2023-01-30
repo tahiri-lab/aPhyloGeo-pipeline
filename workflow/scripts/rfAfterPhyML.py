@@ -2,14 +2,12 @@ from csv import writer
 import time
 import os
 
-
 def addToCsv(window_pos, ref_feature, normalized_RF,output_csv):
     list = [window_pos, ref_feature,normalized_RF]
     with open(output_csv, 'a') as f_object:
         writer_object = writer(f_object)
         writer_object.writerow(list)
         f_object.close()
-
 
 def filter_RF(rf_outfile,output_csv):
     time.sleep(5)
@@ -30,4 +28,7 @@ def filter_RF(rf_outfile,output_csv):
         addToCsv(window_pos, ref_feature, normalized_RF,output_csv)
 
 if __name__ == '__main__':
-    filter_RF(snakemake.input,snakemake.output[0])
+    filter_RF(
+        snakemake.input,
+        snakemake.output[0]
+    )
