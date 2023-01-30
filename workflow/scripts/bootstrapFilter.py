@@ -30,5 +30,9 @@ def bootstrapFilter(file_window, file_consensus, data_type, bootstrap_threshold=
 
 
 if __name__ == '__main__':
-    bootstrapFilter(snakemake.input[0], snakemake.output[0], snakemake.params.data_type,
-                    snakemake.config['thresholds']['bootstrap_threshold'])
+    bootstrapFilter(
+        snakemake.input[0],
+        snakemake.output[0],
+        snakemake.params.data_type,
+        snakemake.config['thresholds']['bootstrap_threshold']
+    )
