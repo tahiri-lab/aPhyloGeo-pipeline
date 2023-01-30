@@ -57,4 +57,9 @@ def getGeoTree(df, column_with_specimen_name, column_to_search, outfile_name):
 
 
 if __name__ == '__main__':
-    getGeoTree(snakemake.params.df_geo, snakemake.config['params']['specimen_id'], snakemake.wildcards.feature, snakemake.output.newick)
+    getGeoTree(
+        snakemake.params.df_geo, 
+        snakemake.config['params']['specimen_id'], 
+        snakemake.wildcards.feature, 
+        snakemake.output.newick
+    )
