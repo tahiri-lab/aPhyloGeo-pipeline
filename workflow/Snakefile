@@ -24,7 +24,10 @@ include: 'rules/slidingWindows1a.smk'
 include: 'rules/refTrees1b.smk'
 
 
-# Step 2: Phylogenetic trees construction; Step3: Filtering -- Bootstrap of consensus; Step4: RF distance calculation; # Step 5: Filtering -- RF distance
+# Step 2: Phylogenetic trees construction; 
+# Step 3: Filtering -- Bootstrap of consensus; 
+# Step 4: RF distance calculation; 
+# Step 5: Filtering -- RF distance
 include: 'rules/phyML2.smk'
 
 include: 'rules/rf_phyML.smk'
