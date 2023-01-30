@@ -10,4 +10,8 @@ def getWindowsFiltered(alignment_output, window_pos, outfile_name):
             SeqIO.write(records, handle, "fasta") 
 
 if __name__ == '__main__':
-    getWindowsFiltered(snakemake.params.alignment_output, snakemake.wildcards.windows_pos, snakemake.output.windows_filtered)
+    getWindowsFiltered(
+        snakemake.params.alignment_output,
+        snakemake.wildcards.windows_pos,
+        snakemake.output.windows_filtered
+    )
