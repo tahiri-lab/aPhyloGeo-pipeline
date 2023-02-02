@@ -63,8 +63,8 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     -   [`config.yaml`](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/config/config.yaml)  - analysis-specific settings (e.g., bootstrap_threshold, rf_threshold, step_size, window_size, data_type etc.) <br>
 **Note**:You should set the parameters and threshold in the `config.yaml` file according to your research needs. When setting the parameters and threshold, please modify the corresponding values. Remember **not** to change the parameter names or file names.
 	-   **Thresholds** in `config.yaml`:
-		- `bootstrap_threshold`: Only sliding windows with bootstrap values greater than user-set bootstrap_threshold will be written to the output file.
-		- `rf_threshold`: The tree distance between each combination of sliding windows and environmental features will be calculated. Only sliding windows with Robinson–Foulds (RF) distance below the user-set bootstrap_threshold will be written to the output file.
+		- `bootstrap_threshold`: Only sliding windows with bootstrap values greater than user-set bootstrap_threshold (value from 0 to 1) will be written to the output file.
+		- `rf_threshold`: The tree distance between each combination of sliding windows and environmental features will be calculated. Only sliding windows with Robinson–Foulds (RF) distance below the user-set rf_threshold (value from 0 to 100) will be written to the output file.
 	-    **params** in `config.yaml`:
 			- `data_type`: `aa` for the amino acid dataset (case insensitive); Any other values set by the user will be treated as nucleotide dataset (default).
 			- `step_size`: the size of the Sliding window movement step (bp)
