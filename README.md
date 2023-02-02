@@ -80,7 +80,7 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     conda update -y conda
     
   
- **2.2 Create a conda environment named aaa and install all the dependencies in that environment.**<br>
+ **2.2 Create a conda environment named aPhyloGeo and install all the dependencies in that environment.**<br>
  
  
     # create a new environment with dependencies 
