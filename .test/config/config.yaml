@@ -10,4 +10,4 @@ params:
   seq_file: config/sample_seq.fa
   specimen_id: id
   feature_names:
-    - ALLSKY_SFC_SW_DWN
+    - T2M,QV2M
