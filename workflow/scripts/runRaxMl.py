@@ -8,4 +8,8 @@ def runRaxMl(inputfile, prefix, data_type):
 
 
 if __name__ == '__main__':
-    runRaxMl(snakemake.input[0], snakemake.wildcards.windows_pos, snakemake.params.data_type)
+    runRaxMl(
+        snakemake.input[0],
+        snakemake.wildcards.windows_pos,
+        snakemake.params.data_type
+    )

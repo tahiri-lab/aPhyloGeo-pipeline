@@ -8,4 +8,8 @@ def rfCalcul(file_seqTree,file_refTree,ete3_output):
          
 
 if __name__ == '__main__':
-    rfCalcul(snakemake.input.seq_tree,snakemake.input.ref_tree,snakemake.output.ete3_output)
+    rfCalcul(
+        snakemake.input.seq_tree,
+        snakemake.input.ref_tree,
+        snakemake.output.ete3_output
+    )

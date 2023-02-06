@@ -10,7 +10,7 @@
 
 </p>
 
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Snakemake workflow for phylogeographic analysis.</p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Snakemake workflow for phylogeographic analysis make by Wanlin Li and Tahiri Nadia from University of Sherbrooke (Quebec, Canada).</p>
 
 <details open>
   <summary>Table of Contents</summary>
@@ -35,6 +35,7 @@
 
 
 # About the project
+A Snakemake workflow for phylogeographic analysis make by Wanlin Li and Tahiri Nadia from University of Sherbrooke (Quebec, Canada). 
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;aPhyloGeo-pipeline is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.</p>
 
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;To investigate the possible correlation between the diversity of specific genes (or gene fragments) and the geographical distribution of these species, (1) we first added the strategy of sliding windows to the traditional phylogeny study. By setting the sliding window size and step size, the alignment of multiple sequences was cut into windows, and a phylogenetic tree was constructed for each window. (2) A cluster analysis was performed for each geographical factor. For each geographical factor, a distance matrix was calculated, and then a reference tree was created based on the distance matrix and neighbour-joining clustering method. The leaf nodes of these reference trees correspond to the environmental factors of the species involved in the phylogenetic trees. (3) Subsequently, the correlations between phylogenetic and reference trees were evaluated using the Robinson-Foulds (RF) distance calculation. RF distances were calculated for each combination of the phylogenetic tree and the reference tree. (4) Eventually, thresholds were used to screen out gene fragments in which patterns of variation within species coincide with a specific geographic feature. These screened fragments can provide meaningful reference information for further studies.</p>
@@ -79,7 +80,7 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     conda update -y conda
     
   
- **2.2 Create a conda environment named aaa and install all the dependencies in that environment.**<br>
+ **2.2 Create a conda environment named aPhyloGeo and install all the dependencies in that environment.**<br>
  
  
     # create a new environment with dependencies 
@@ -99,8 +100,8 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     -   [`config.yaml`](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/config/config.yaml)  - analysis-specific settings (e.g., bootstrap_threshold, rf_threshold, step_size, window_size, data_type etc.) <br>
 **Note**:You should set the parameters and threshold in the `config.yaml` file according to your research needs. When setting the parameters and threshold, please modify the corresponding values. Remember **not** to change the parameter names or file names.
 	-   **Thresholds** in `config.yaml`:
-		- `bootstrap_threshold`: Only sliding windows with bootstrap values greater than user-set bootstrap_threshold will be written to the output file.
-		- `rf_threshold`: The tree distance between each combination of sliding windows and environmental features will be calculated. Only sliding windows with Robinson–Foulds (RF) distance below the user-set bootstrap_threshold will be written to the output file.
+		- `bootstrap_threshold`: Only sliding windows with bootstrap values greater than user-set bootstrap_threshold (value from 0 to 1) will be written to the output file.
+		- `rf_threshold`: The tree distance between each combination of sliding windows and environmental features will be calculated. Only sliding windows with Robinson–Foulds (RF) distance below the user-set rf_threshold (value from 0 to 100) will be written to the output file.
 	-    **params** in `config.yaml`:
 			- `data_type`: `aa` for the amino acid dataset (case insensitive); Any other values set by the user will be treated as nucleotide dataset (default).
 			- `step_size`: the size of the Sliding window movement step (bp)

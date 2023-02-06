@@ -1,7 +1,6 @@
 import numpy as np
 import re
 
-
 def calculateAverageBootstrapRax(outtree):
     f = open(outtree, "r").read()
     numbers = re.findall(r'[)][:]\d+[.]\d+', f)
@@ -16,6 +15,9 @@ def filterBootstrap(raxmlTree,Bootstrap_file, bootstrap_threshold=0):
     else:
         open(Bootstrap_file, 'w').close()
 
-
 if __name__ == '__main__':
-    filterBootstrap(snakemake.input[0], snakemake.output[0], snakemake.config['thresholds']['bootstrap_threshold'])
+    filterBootstrap(
+        snakemake.input[0], 
+        snakemake.output[0], 
+        snakemake.config['thresholds']['bootstrap_threshold']
+    )

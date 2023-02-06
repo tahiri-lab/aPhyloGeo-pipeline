@@ -8,4 +8,8 @@ def runFastTree(inputfile, outputfile, data_type):
 
 
 if __name__ == '__main__':
-    runFastTree(snakemake.input[0], snakemake.output[0], snakemake.params.data_type)
+    runFastTree(
+        snakemake.input[0],
+        snakemake.output[0],
+        snakemake.params.data_type
+    )
