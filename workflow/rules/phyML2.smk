@@ -1,6 +1,7 @@
 rule rf_distance:
-    input: seq_tree = "results/bootstrap_consensus/window_position_{position}",
-    ref_tree = "results/reference_tree/{feature}_newick"
+    input: 
+        seq_tree = "results/bootstrap_consensus/window_position_{position}",
+        ref_tree = "results/reference_tree/{feature}_newick"
     output:
         ete3_output = "results/rf/{position}.{feature}.rf_ete"
     conda:
