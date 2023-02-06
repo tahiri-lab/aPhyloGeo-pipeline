@@ -5,7 +5,6 @@ min_version("7.17.0")
 
 ##### Config file and sample sheets  #####
 # The following is equivalent to what snakemake does with the configuration file:
-
 configfile: "config/config.yaml"
     
 ##### setup singularity #####
@@ -29,7 +28,6 @@ include: 'rules/refTrees1b.smk'
 # Step 4: RF distance calculation; 
 # Step 5: Filtering -- RF distance
 include: 'rules/phyML2.smk'
-
 include: 'rules/rf_phyML.smk'
 
 #step6 to end
