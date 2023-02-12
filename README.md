@@ -93,8 +93,9 @@ The software dependencies can be found in the conda environment files: [[1]](htt
 
 # ✔️ Citation
 
-A manuscript for aPhyloGeo-pipeline is in preparation.
-	
+1️⃣ A manuscript for aPhyloGeo-pipeline is in preparation.
+
+2️⃣ The usage of this workflow is described in the [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/?usage=tahiri-lab%2FaPhyloGeo-pipeline). If you use this workflow in a paper, don't forget to give credits to the authors by citing the URL of this (original) sitory and its DOI (see above).
 	
 # 📧 Contact
 Please email us at : <Nadia.Tahiri@USherbrooke.ca> for any question or feedback.
