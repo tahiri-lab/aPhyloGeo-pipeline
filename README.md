@@ -10,7 +10,7 @@
 
 </p>
 
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Snakemake workflow for phylogeographic analysis make by Wanlin Li and Tahiri Nadia from University of Sherbrooke (Quebec, Canada).</p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🐍 A Snakemake workflow for phylogeographic analysis make by Wanlin Li and Tahiri Nadia from University of Sherbrooke (Quebec, Canada).</p>
 
 <details open>
   <summary>Table of Contents</summary>
@@ -34,13 +34,13 @@
 </details>
 
 
-# About the project
+# 📝 About the project
 A Snakemake workflow for phylogeographic analysis make by Wanlin Li and Tahiri Nadia from University of Sherbrooke (Quebec, Canada). 
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;aPhyloGeo-pipeline is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.</p>
 
 <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;To investigate the possible correlation between the diversity of specific genes (or gene fragments) and the geographical distribution of these species, (1) we first added the strategy of sliding windows to the traditional phylogeny study. By setting the sliding window size and step size, the alignment of multiple sequences was cut into windows, and a phylogenetic tree was constructed for each window. (2) A cluster analysis was performed for each geographical factor. For each geographical factor, a distance matrix was calculated, and then a reference tree was created based on the distance matrix and neighbour-joining clustering method. The leaf nodes of these reference trees correspond to the environmental factors of the species involved in the phylogenetic trees. (3) Subsequently, the correlations between phylogenetic and reference trees were evaluated using the Robinson-Foulds (RF) distance calculation. RF distances were calculated for each combination of the phylogenetic tree and the reference tree. (4) Eventually, thresholds were used to screen out gene fragments in which patterns of variation within species coincide with a specific geographic feature. These screened fragments can provide meaningful reference information for further studies.</p>
 
-# Dependencies
+# ⚒️ Dependencies
 
 -   [Python](https://www.python.org/)
 -   [Conda](https://conda.io/)  - package/environment management system
@@ -59,7 +59,7 @@ The workflow includes the following bioinformatics tools:
 
 The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs) and [[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml).
 
-# Usage 
+# 💡 Usage 
 
 **1. Clone this repo.**
 
@@ -67,7 +67,7 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     cd aPhyloGeo-pipeline
 
 
-**2. Install dependencies.** <br><br>
+**2. 🚀 Install dependencies.** <br><br>
 **2.1 If you do not have Conda installed, then use the following method to install it. If you already have Conda installed, then refer directly to the next step (2.2).**
 
     # download Miniconda3 installer
@@ -92,10 +92,10 @@ The software dependencies can be found in the conda environment files: [[1]](htt
     conda activate aPhyloGeo
 
 
-# Citation
+# ✔️ Citation
 
 A manuscript for aPhyloGeo-pipeline is in preparation.
 	
 	
-# Contact
+# 📧 Contact
 Please email us at : <Nadia.Tahiri@USherbrooke.ca> for any question or feedback.
