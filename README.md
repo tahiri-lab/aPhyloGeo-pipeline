@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿<h1  align="center"> Snakemake workflow: aPhyloGeo </h1> <p align='center'> 
+﻿﻿﻿﻿﻿﻿﻿﻿<h1  align="center">🐍 Snakemake workflow: aPhyloGeo </h1> <p align='center'> 
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥7.17.0-brightgreen.svg)](https://snakemake.github.io)
 [![GitHub actions status](https://github.com/tahiri-lab/aPhyloGeo-pipeline/workflows/Tests/badge.svg?branch=main)](https://github.com/tahiri-lab/aPhyloGeo-pipeline/actions?query=branch%3Amain+workflow%3ATests)
@@ -10,7 +10,7 @@
 
 </p>
 
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🐍 A Snakemake workflow for phylogeographic analysis make by Wanlin Li and Tahiri Nadia from University of Sherbrooke (Quebec, Canada).</p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Snakemake workflow for phylogeographic analysis.</p>
 
 <details open>
   <summary>Table of Contents</summary>
