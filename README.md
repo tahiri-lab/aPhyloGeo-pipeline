@@ -58,7 +58,7 @@ The workflow includes the following bioinformatics tools:
 
 The software dependencies can be found in the [conda environment file](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml).
 
-# 💡 Getting started 
+# Getting started 
 
 **1. Clone this repo.**
 
