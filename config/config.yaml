@@ -6,12 +6,11 @@ params:
   step_size: 1
   window_size: 9
   strategy: fasttree
-  geo_file: config/geo_hornet.csv
-  seq_file: config/aln_hornet.fa
-  specimen_id: sequence_ID
+  geo_file: config/geo_leopard.csv
+  seq_file: config/aln_leopard.fa
+  specimen_id: id
   feature_names:
-    - PRECTOTCORR_SUM
-    - QV2M
-    - RH2M
-    - WD10M
-    - WS10M
+    - DEC-FEB
+    - MAR-MAY
+    - JUN-AUG
+    - SEP-NOV
