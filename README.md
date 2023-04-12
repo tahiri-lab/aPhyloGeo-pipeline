@@ -35,15 +35,15 @@
 
 
 # 📝 About the project
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;aPhyloGeo-pipeline is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore the correlation between specific genes (or gene segments) and environmental factors.</p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;aPhyloGeo-pipeline is a user-friendly, scalable, reproducible, and comprehensive workflow that can explore how patterns of variation within species coincide with geographic features, such as climatic features.By incorporating user-defined parameters such as fragment size (window size) and sliding window advancement step (step size), the pipeline conducts a thorough scan of multiple sequence alignment (MSA) and performs a joint analysis with environmental data to identify gene fragments that are strongly associated with specific environmental factors.</p>
 
-<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;To investigate the possible correlation between the diversity of specific genes (or gene fragments) and the geographical distribution of these species, (1) we first added the strategy of sliding windows to the traditional phylogeny study. By setting the sliding window size and step size, the alignment of multiple sequences was cut into windows, and a phylogenetic tree was constructed for each window. (2) A cluster analysis was performed for each geographical factor. For each geographical factor, a distance matrix was calculated, and then a reference tree was created based on the distance matrix and neighbour-joining clustering method. The leaf nodes of these reference trees correspond to the environmental factors of the species involved in the phylogenetic trees. (3) Subsequently, the correlations between phylogenetic and reference trees were evaluated using the Robinson-Foulds (RF) distance calculation. RF distances were calculated for each combination of the phylogenetic tree and the reference tree. (4) Eventually, thresholds were used to screen out gene fragments in which patterns of variation within species coincide with a specific geographic feature. These screened fragments can provide meaningful reference information for further studies.</p>
+<p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;To investigate the potential correlation between the diversity of specific genes or gene fragments and their geographic distribution, a sliding window strategy was employed in addition to traditional phylogenetic analyses. Firstly, the multiple sequence alignment (MSA) was partitioned into windows by specifying the sliding window size and step size. Then a phylogenetic tree for each window was constructed. Secondly, cluster analyses for each geographic factor were performed by calculating a distance matrix and creating a reference tree based on the distance matrix and the Neighbor-Joining clustering method (Cardoso et al., 2022). Reference trees (based on geographic factors) and phylogenetic trees (based on sliding windows) were defined on the same set of leaves (i.e., names of species). Subsequently, the correlation between phylogenetic and reference trees was evaluated using the Robinson and Foulds (RF) distance calculation. RF distances were calculated for each combination of the phylogenetic tree and the reference tree. Finally, bootstrap and RF thresholds were applied to identify gene fragments in which patterns of variation within species coincided with a particular geographic feature. These fragments can serve as informative reference points for future studies.</p>
 
 # ⚒️ Dependencies
 
 -   [Python](https://www.python.org/)
--   [Conda](https://conda.io/)  - package/environment management system
--   [Snakemake](https://snakemake.readthedocs.io/)  - workflow management system
+-   [Conda](https://conda.io/)  
+-   [Snakemake](https://snakemake.readthedocs.io/)  
 
 The workflow includes the following Python packages:
 - [biopython](https://pypi.org/project/biopython/)
