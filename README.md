@@ -56,7 +56,7 @@ The workflow includes the following bioinformatics tools:
 - [raxml-ng](https://github.com/amkozlov/raxml-ng)
 - [fasttree](http://www.microbesonline.org/fasttree/)
 
-The software dependencies can be found in the conda environment files: [[1]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/tree/main/workflow/envs) and [[2]](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml).
+The software dependencies can be found in the [conda environment file](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml).
 
 # 💡 Usage 
 
@@ -89,6 +89,18 @@ The software dependencies can be found in the conda environment files: [[1]](htt
  **2.3 Activate the environment**   <br>
  
     conda activate aPhyloGeo
+    
+**3. Configure the workflow**
+
+-   **Prepare the config file**:
+
+	Modify the values of parameters and threshold in the [`config.yaml`](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/config/config.yaml) according to the research needs.  <br>
+	
+	**Note**:  Please modify the corresponding values and do **NOT** change the parameter names or file names.
+
+-   **Prepare the input files**:
+	- A file of multiple sequences alignment in FASTA format
+	- A CSV file includes environmental data on the geographical habitat of the studied species
 
 
 # ✔️ Citation
