@@ -22,7 +22,7 @@
       <a href="#Dependencies">Dependencies</a>
     </li>
     <li>
-      <a href="#Usage">Getting started</a>
+      <a href="#Getting-started">Getting started</a>
     </li>
     <li>
       <a href="#Citation">Citation</a>
