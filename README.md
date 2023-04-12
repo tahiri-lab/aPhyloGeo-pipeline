@@ -22,7 +22,7 @@
       <a href="#Dependencies">Dependencies</a>
     </li>
     <li>
-      <a href="#Usage">Usage</a>
+      <a href="#Usage">Getting started</a>
     </li>
     <li>
       <a href="#Citation">Citation</a>
@@ -58,7 +58,7 @@ The workflow includes the following bioinformatics tools:
 
 The software dependencies can be found in the [conda environment file](https://github.com/tahiri-lab/aPhyloGeo-pipeline/blob/main/environment.yaml).
 
-# 💡 Usage 
+# 💡 Getting started 
 
 **1. Clone this repo.**
 
@@ -67,7 +67,7 @@ The software dependencies can be found in the [conda environment file](https://g
 
 
 **2. 🚀 Install dependencies.** <br><br>
-**2.1 If you do not have Conda installed, then use the following method to install it. If you already have Conda installed, then refer directly to the next step (2.2).**
+***2.1 If you do not have Conda installed, then use the following method to install it. If you already have Conda installed, then refer directly to the next step (2.2).***
 
     # download Miniconda3 installer
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
@@ -79,14 +79,14 @@ The software dependencies can be found in the [conda environment file](https://g
     conda update -y conda
     
   
- **2.2 Create a conda environment named aPhyloGeo and install all the dependencies in that environment.**<br>
+ ***2.2 Create a conda environment named aPhyloGeo and install all the dependencies in that environment.***<br>
  
  
     # create a new environment with dependencies 
     conda env create -n aPhyloGeo -f environment.yaml
     
     
- **2.3 Activate the environment**   <br>
+ ***2.3 Activate the environment***   <br>
  
     conda activate aPhyloGeo
     
@@ -102,6 +102,25 @@ The software dependencies can be found in the [conda environment file](https://g
 	- A file of multiple sequences alignment in FASTA format
 	- A CSV file includes environmental data on the geographical habitat of the studied species
 
+**4. Execute the workflow.**
+
+**Run workflow**
+
+    
+    # In a conda environment where all dependencies are already installed
+    # Specify the maximum number of CPU cores to be used at the same time.
+    # To use N cores: --cores N or -cN.
+    
+    snakemake --cores all
+    
+**Even with not created and activated the conda environment as required in 2.2 and 2.3 is possible by running the workflow successfully with '--use-conda'. Snakemake will create a temporary conda environment.**  <br>
+    
+    # To specify the maximum number of CPU cores to be used at the same time. 
+    # 	With N cores: --cores N or -cN. 
+    # 	For all cores in the system: --cores all. 
+    
+    snakemake --use-conda --cores all
+    
 
 # ✔️ Citation
 
